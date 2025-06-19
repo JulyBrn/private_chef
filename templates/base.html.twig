@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Nicolas Chef{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+				<link rel="preconnect" href="https://fonts.googleapis.com">
+				<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+				<link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
+				<link href="https://fonts.googleapis.com/css2?family=Noticia+Text:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+				<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noticia+Text:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+        {% block stylesheets %}
+        {% endblock %}
+{% block javascripts %}
+	{% block importmap %}
+		{{ importmap('app') }}
+	{% endblock %}
+{% endblock %}
+</head>
+<body>
+<header>
+	<nav class="flex flex-between align-center">
+		<h2 class="ml15">Nicolas Chef .</h2>
+		<ul class="flex flex-end flex-gap-30 mr50">
+			<li><a href="{{ path('home') }}">Accueil</a></li>
+			{# <li><a href="{{ path('about') }}">À propos</a></li> #}
+			<li><a href="{{ path('home') }}#prestations">Prestations</a></li>
+			{# <li><a href="{{ path('gallery') }}">Galerie photo</a></li> #}
+			<li><a href="{{ path('home') }}#contact-form">Contact</a></li>
+		</ul>
+	</nav>
+</header>
+<main>
+{% block body %}
+{% endblock %}
+</main>
+<footer class="site-footer">
+  <p class="mb5">&copy; {{ "now"|date("Y") }} Nicolas Chef. Tous droits réservés.</p>
+  <p>
+    <a href="/mentions-legales">Mentions légales</a> |
+    <a href="/politique-confidentialite">Politique de confidentialité</a>
+  </p>
+</footer>
+
+</body>
+</html>
+

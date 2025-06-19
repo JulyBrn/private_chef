@@ -1,0 +1,110 @@
+{% extends 'base.html.twig' %}
+
+{%  set successMessages = app.flashes('success') %}
+
+
+
+{% block body %}
+<div class="home" style="background-image: url('/img/homepage.jpg');">
+	<div class="home-container-outer p20">
+
+    <div class="home-container-inner  flex align-center flex-column">
+        <h2 class="mt20 mb10 title_section">Le chef privé qui sublimera vos événement !</h2>
+				<div class="entry-text pb20">
+				 	<p>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+						Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+						Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+        	</p>
+				</div>
+    </div>
+
+		<div id="prestations" class="menu-section mt50 flex flex-column align-center">
+			<div class="menu-container flex flex-between">
+				<div class="menu-item flex flex-column">
+					<a href="#">
+						<img src="/img/plat1.jpg" alt="Plat 1">
+					</a>
+					<div class="menu-text mt15">
+						<h3 class="mb5">Repas sur mesure</h3>
+						<p class="mt0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+					</div>
+    		</div>
+    		<div class="menu-item flex flex-column">
+					<a href="#">
+						<img src="/img/plat2.jpg" alt="Plat 2">
+					</a>
+					<div class="menu-text mt15">
+						<h3 class="mb5">Brunch privé</h3>
+						<p class="mt0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+					</div>
+    		</div>
+    		<div class="menu-item flex flex-column">
+					<a href="#">
+						<img src="/img/plat3.jpg" alt="Plat 3">
+					</a>
+					<div class="menu-text mt15">
+						<h3 class="mb5">Service traiteur</h3>
+						<p class="mt0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+					</div>
+    		</div>
+  		</div>
+		</div>
+
+		<div class="form-container p40">
+  	{% for message in successMessages %}
+    	<div class="success-message" id="flashmessage">{{ message }}</div>
+  	{% endfor %}
+
+		<form method="POST" id="contact-form">
+			<div class="flex flex-center flex-gap-40 flex-wrap">
+				<div class="form-left mb10">
+					<h2 class="title-1 font-noticia mb5">Contactez-moi</h2>
+					<div class="error">
+    				{{ form_errors(form.name) }}
+					</div>
+					{{ form_widget(form.name, {'attr': {'class': 'form-control', 'placeholder': 'Nom'}}) }}
+
+					<div class="error">
+    				{{ form_errors(form.surname) }}
+					</div>
+					{{ form_widget(form.surname, {'attr': {'class': 'form-control', 'placeholder': 'Prénom'}}) }}
+
+					<div class="error">
+    				{{ form_errors(form.phone) }}
+					</div>
+					{{ form_widget(form.phone, {'attr': {'class': 'form-control', 'placeholder': 'Téléphone'}}) }}
+
+					<div class="error">
+    				{{ form_errors(form.email) }}
+					</div>
+					{{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder': 'Email'}}) }}
+					
+				</div>
+
+				<div class="form-right mb10">
+					{{ form_widget(form.message, {'attr': {'class': 'form-control', 'placeholder': 'Votre Message', 'rows': '6'}}) }}
+					<div class="error">
+    				{{ form_errors(form.message) }}
+					</div>
+					<div class="form-submit">
+						{{ form_rest(form) }}
+						<button type="submit" class="submit-btn">Envoyer</button>
+					</div>
+				</div>
+			</div>
+
+			
+		</form>
+	</div>
+	
+	<div class="mt50 flex flex-column">
+		<h1 class="title-1 font-noticia mb10">Suivez-moi sur instagram</h1>
+		<!-- LightWidget WIDGET -->
+		<script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script>
+		<iframe src="//lightwidget.com/widgets/d8709e3d85a6546697216d4951885db9.html" scrolling="no" allowtransparency="true" class="lightwidget-widget" style="width:100%;border:0;overflow:hidden;"></iframe>
+	</div>
+
+	</div>
+</div>
+{% endblock %}

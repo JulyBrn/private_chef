@@ -1,0 +1,89 @@
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+
+body {
+    background-color: whitesmoke;
+    margin: 0!important;
+    font-family: 'Roboto', sans-serif;
+}
+
+html {
+    font-size: 10px;
+    scroll-behavior: smooth;
+}
+
+a {text-decoration: none;}
+
+li {list-style: none; }
+
+/* Menu  */
+
+nav {position: absolute; z-index: 1;width: 100%; top: 20px;}
+nav h2 {font-family: 'Montserrat', Arial, sans-serif; width: 20%;color: #404040;font-weight: 300; font-size: 2.8rem;}
+
+nav ul {width: 70%;}
+nav li {font-family: "Noticia Text", serif; font-size:1.7rem;}
+
+nav ul a {color:#404040; transition: transform 0.3s ease, color 0.3s ease;}
+nav ul li:hover {transform: scale(1.1);}
+
+ul {padding: 0; margin: 0;}
+ul li {padding: 0; margin: 0;}
+
+.error {color: red; font-size: 1.3rem; font-family: 'Montserrat', sans-serif; font-weight: 300;text-align: start;}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1; /* Cela pousse le footer en bas */
+  min-height: 220vh;
+}
