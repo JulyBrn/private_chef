@@ -38,11 +38,56 @@
 <footer class="site-footer">
   <p class="mb5">&copy; {{ "now"|date("Y") }} Nicolas Chef. Tous droits réservés.</p>
   <p>
-    <a href="/mentions-legales">Mentions légales</a> |
-    <a href="/politique-confidentialite">Politique de confidentialité</a>
+    <a href="#" onclick="openModal(this)" data-modalid="mentions_legales">Mentions légales</a>|
+    <a href="#" onclick="openModal(this)" data-modalid="confidentialite" >Politique de confidentialité</a>
   </p>
 </footer>
+
+{# Include modale #}
+{% include 'modals/mentions_legales.html.twig' %}
+{% include 'modals/confidentialite.html.twig' %}
 
 </body>
 </html>
 
+<script>
+
+// Ouverture modale
+function openModal(element)
+{
+  event.preventDefault();
+  const modalId = element.dataset.modalid;
+	console.log(modalId)
+
+  const modal = document.getElementById(modalId);
+  if (!modal) return;
+  modal.style.display = 'flex';
+
+  modal.setAttribute('tabindex', '-1');
+  modal.focus();
+
+  const closeBtn = modal.querySelector('.modal-close');
+  closeBtn.addEventListener('click', () => closeModal(modal));
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      closeModal(modal);
+    }
+  });
+
+  document.addEventListener('keydown', function onKeyDown(e) {
+    if (e.key === "Escape") {
+      closeModal(modal);
+      document.removeEventListener('keydown', onKeyDown);
+    }
+  });
+}
+
+// Fermeture modale
+function closeModal(modal)
+{
+  modal.style.display = 'none';
+}
+
+
+</script>
