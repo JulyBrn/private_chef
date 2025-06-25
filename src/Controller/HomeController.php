@@ -17,7 +17,6 @@ final class HomeController extends AbstractController
     #[Route('/', name: 'home')]
     public function index(Request $request,  MailerInterface $mailer, EntityManagerInterface $entityManager): Response
     {
-        // $this->denyAccessUnlessGranted('ROLE_USER');
         $contacts = new Prospect();
         $form = $this->createForm( ContactForm::class , $contacts);
         $form->handleRequest($request);
@@ -49,12 +48,6 @@ final class HomeController extends AbstractController
         ]);
     }
     
-    // #[Route('/about', name: 'about')]
-    // public function about(): Response
-    // {
-    //     return $this->render('about/index.html.twig');
-    // }
-
     // #[Route('/prestations', name: 'prestations')]
     // public function prestation(): Response
     // {

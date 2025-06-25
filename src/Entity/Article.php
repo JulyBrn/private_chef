@@ -23,6 +23,9 @@ class Article
     #[ORM\Column]
     private ?\DateTime $date = null;
 
+    #[ORM\Column(length: 100)]
+    private ?string $section = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -60,6 +63,18 @@ class Article
     public function setDate(\DateTime $date): static
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function getSection(): ?string
+    {
+        return $this->section;
+    }
+
+    public function setSection(string $section): static
+    {
+        $this->section = $section;
 
         return $this;
     }

@@ -10,7 +10,7 @@ fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
 article, aside, canvas, details, embed, 
 figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
+menu, nav:not('.admin'), output, ruby, section, summary,
 time, mark, audio, video {
 	margin: 0;
 	padding: 0;
@@ -21,7 +21,7 @@ time, mark, audio, video {
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
+footer, header, hgroup, menu, nav:not('.admin'), section {
 	display: block;
 }
 body {
@@ -52,7 +52,6 @@ body {
 }
 
 html {
-    font-size: 10px;
     scroll-behavior: smooth;
 }
 
@@ -62,14 +61,14 @@ li {list-style: none; }
 
 /* Menu  */
 
-nav {position: absolute; z-index: 1;width: 100%; top: 20px;}
-nav h2 {font-family: 'Montserrat', Arial, sans-serif; width: 20%;color: #404040;font-weight: 300; font-size: 2.8rem;}
+nav:not('.admin') {position: absolute; z-index: 1;width: 100%; top: 20px;}
+nav:not('.admin') h2 {font-family: 'Montserrat', Arial, sans-serif; width: 20%;color: #404040;font-weight: 300; font-size: 2.8rem;}
 
-nav ul {width: 70%;}
-nav li {font-family: "Noticia Text", serif; font-size:1.7rem;}
+nav:not('.admin') ul {width: 70%;}
+nav:not('.admin') li {font-family: "Noticia Text", serif; font-size:1.7rem;}
 
-nav ul a {color:#404040; transition: transform 0.3s ease, color 0.3s ease;}
-nav ul li:hover {transform: scale(1.1);}
+nav:not('.admin') ul a {color:#404040; transition: transform 0.3s ease, color 0.3s ease;}
+nav:not('.admin') ul li:hover {transform: scale(1.1);}
 
 ul {padding: 0; margin: 0;}
 ul li {padding: 0; margin: 0;}
