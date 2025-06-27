@@ -24,13 +24,14 @@
       {% endblock %}
   </head>
   <body>
-    <header>
-      <nav class="nav admin">
-        <a class="nav-link active" href="{{ path('admin') }}">Administration</a>
+    <header class="mb50">
+      <nav class="nav admin pt20">
+        <a class="nav-link" href="{{ path('admin') }}">Administration</a>
         <a class="nav-link" href="{{ path('publication') }}">Publications</a>
       </nav>
     </header>
     <main>
+    {% include 'partials/flash.html.twig' %}
     {% block body %}
     {% endblock %}
     </main>

@@ -15,21 +15,23 @@ class ContactForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder->add('name', TextType::class, [
+        $builder
+            ->add('name', TextType::class, [
                 'required' => true
-            ]);
-        $builder->add('surname', TextType::class, [
+            ])
+            ->add('surname', TextType::class, [
                 'required' => true
-            ]);
-        $builder->add('phone', TelType::class, [
+            ])
+            ->add('phone', TelType::class, [
             'required' => true 
-        ]);
-        $builder->add('email', EmailType::class, [
+            ])
+            ->add('email', EmailType::class, [
             'required' => true 
-        ]);
-        $builder->add('message', TextareaType::class, [
-            'required' => true 
-        ]);
+            ])
+            ->add('message', TextareaType::class, [
+            'required' => true
+            ])
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
