@@ -9,12 +9,10 @@
 	<div class="home-container-outer p20">
 
     <div class="home-container-inner  flex align-center flex-column">
-        <h2 class="mt20 mb10 title_section">Le chef privé qui sublimera vos événement !</h2>
+        <h2 class="mt20 mb10 title_section"> {{ tabArticle.bloc_presentation.title }} </h2>
 				<div class="entry-text pb20">
 				 	<p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-						Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-						Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+						{{ tabArticle.bloc_presentation.text }}
         	</p>
 				</div>
     </div>
@@ -26,8 +24,8 @@
 						<img src="/img/plat1.jpg" alt="Plat 1">
 					</a>
 					<div class="menu-text mt15">
-						<h3 class="mb5">Repas sur mesure</h3>
-						<p class="mt0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+						<h3 class="mb5">{{ tabArticle.bloc_presta_1.title }}</h3>
+						<p class="mt0">{{ tabArticle.bloc_presta_1.text }}</p>
 					</div>
     		</div>
     		<div class="menu-item flex flex-column">
@@ -35,8 +33,8 @@
 						<img src="/img/plat2.jpg" alt="Plat 2">
 					</a>
 					<div class="menu-text mt15">
-						<h3 class="mb5">Brunch privé</h3>
-						<p class="mt0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+						<h3 class="mb5">{{ tabArticle.bloc_presta_2.title }}</h3>
+						<p class="mt0">{{ tabArticle.bloc_presta_2.text }}</p>
 					</div>
     		</div>
     		<div class="menu-item flex flex-column">
@@ -44,8 +42,8 @@
 						<img src="/img/plat3.jpg" alt="Plat 3">
 					</a>
 					<div class="menu-text mt15">
-						<h3 class="mb5">Service traiteur</h3>
-						<p class="mt0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+						<h3 class="mb5">{{ tabArticle.bloc_presta_3.title }}</h3>
+						<p class="mt0">{{ tabArticle.bloc_presta_3.text }}</p>
 					</div>
     		</div>
   		</div>

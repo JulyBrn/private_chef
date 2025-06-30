@@ -1,3 +1,18 @@
+html {
+  font-size: 10px;
+}
+
+/* Menu  */
+
+nav {position: absolute; z-index: 1;width: 100%; top: 20px;}
+nav h2 {font-family: 'Montserrat', Arial, sans-serif; width: 20%;color: #404040;font-weight: 300; font-size: 2.8rem;}
+
+nav ul {width: 70%;}
+nav li {font-family: "Noticia Text", serif; font-size:1.7rem;}
+
+nav ul a {color:#404040; transition: transform 0.3s ease, color 0.3s ease;}
+nav ul li:hover {transform: scale(1.1);}
+
 .home {
   position: relative;
   width: 100%;

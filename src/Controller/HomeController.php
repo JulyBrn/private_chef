@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Prospect;
 use App\Form\ContactForm;
+use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,7 +16,7 @@ use Symfony\Component\Routing\Attribute\Route;
 final class HomeController extends AbstractController
 {
     #[Route('/', name: 'home')]
-    public function index(Request $request,  MailerInterface $mailer, EntityManagerInterface $entityManager): Response
+    public function index(Request $request,  MailerInterface $mailer, EntityManagerInterface $entityManager, ArticleRepository $article): Response
     {
         $contacts = new Prospect();
         $form = $this->createForm( ContactForm::class , $contacts);
@@ -42,9 +43,19 @@ final class HomeController extends AbstractController
             return $this->redirect($this->generateUrl('home').'#contact-form'); 
         }
 
+        $tabArticle = $article->findAll();
+
+        $articlesBySlug = [];
+        foreach ($tabArticle as $oneArticle)
+        {
+            $articlesBySlug[$oneArticle->getSlug()] = $oneArticle;
+        }
+
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomePageController',
-            'form' => $form
+            'form' => $form,
+            'tabArticle' => $articlesBySlug
+
         ]);
     }
     

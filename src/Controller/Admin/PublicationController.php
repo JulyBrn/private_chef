@@ -18,7 +18,7 @@ final class PublicationController extends AbstractController
   {
 
     $publications = $repository->findAll();
-
+    
     return $this->render('admin/publication.html.twig',[
       'publications' => $publications
     ]);

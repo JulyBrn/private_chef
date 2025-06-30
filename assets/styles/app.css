@@ -57,16 +57,6 @@ a {text-decoration: none;}
 
 li {list-style: none; }
 
-/* Menu  */
-
-nav:not('.admin') {position: absolute; z-index: 1;width: 100%; top: 20px;}
-nav:not('.admin') h2 {font-family: 'Montserrat', Arial, sans-serif; width: 20%;color: #404040;font-weight: 300; font-size: 2.8rem;}
-
-nav:not('.admin') ul {width: 70%;}
-nav:not('.admin') li {font-family: "Noticia Text", serif; font-size:1.7rem;}
-
-nav:not('.admin') ul a {color:#404040; transition: transform 0.3s ease, color 0.3s ease;}
-nav:not('.admin') ul li:hover {transform: scale(1.1);}
 
 ul {padding: 0; margin: 0;}
 ul li {padding: 0; margin: 0;}
