@@ -39,17 +39,19 @@
             <table class="table mt20 mb0">
               <thead>
                 <tr>
-                  <th scope="col">Section</th>
-                  <th scope="col">Titre</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Contact</th>
+                  <th scope="col">Message</th>
                   <th scope="col"></th>
                 </tr>
               </thead>
               <tbody>
-              {% for publication in publications %}
+              {% for prospect in prospects %}
                 <tr>
-                  <td>{{ publication.section }}</td>
-                  <td>{{ publication.title }}</td>
-                  <td><a href="{{ path('publication.update', {id: publication.id } )}}" type="button" class="btn btn-outline-primary">Modifier</a></td>
+                  <td>{{ prospect.date |format_datetime('short', 'short', locale: 'fr') }}</td>php 
+                  <td>{{ prospect.surname }}  {{ prospect.name }}</td>
+                  <td>{{ prospect.message }}</td>
+                  {# <td><a href="{{ path('publication.update', {id: publication.id } )}}" type="button" class="btn btn-outline-primary">Modifier</a></td> #}
                 </tr>
               {% endfor %}
               </tbody>
