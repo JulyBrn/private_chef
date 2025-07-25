@@ -7,6 +7,8 @@ use App\Entity\Prospect;
 use App\Form\ArticleForm;
 use App\Repository\ArticleRepository;
 use App\Repository\ProspectRepository;
+use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,16 +20,16 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 final class AdminController extends AbstractController
 {
   #[Route('/admin', name: 'admin')]
-  public function index(ArticleRepository $article, ProspectRepository $prospect): Response
+  public function index(ArticleRepository $article, ProspectRepository $prospect, UserRepository $users,EntityManagerInterface $em): Response
   {
     $publications = $article->findAll();
-
     $prospects = $prospect->findAll();
 
     // $this->denyAccessUnlessGranted('ROLE_USER');
     return $this->render('admin/admin.html.twig',[
       'publications' => $publications,
-      'prospects' => $prospects
+      'prospects' => $prospects,
+      'userinfo' => $this->getUser()
     ]);
   }
 
@@ -47,6 +49,7 @@ final class AdminController extends AbstractController
     return $this->render('admin/publication-update.html.twig',[
       'article' => $article,
       'form' => $form,
+      'userinfo' => $this->getUser()
       ]);
   }
 }

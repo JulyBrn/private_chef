@@ -24,14 +24,14 @@
   </head>
   <body>
     <header class="mb50">
-      <nav class="navbar navbar-dark bg-dark pt20">
-        <a class="navbar-brand" href="#">Administration</a>
+      <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="/admin">Hello {{ userinfo.name }}</a>
       </nav>
     </header>
     <main>
     {% include 'partials/flash.html.twig' %}
     {% block body %}
-    <section class="p30">
+    <section class="p30 sections">
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Demandes de contact</h5>
@@ -49,7 +49,7 @@
               <tbody>
               {% for prospect in prospects %}
                 <tr>
-                  <td>{{ prospect.date |format_datetime('short', 'short', locale: 'fr') }}</td>php 
+                  <td>{{ prospect.date |format_datetime('short', 'short', locale: 'fr') }}</td>
                   <td>{{ prospect.surname }}  {{ prospect.name }}</td>
                   <td class="flex flex-column"><span>{{ prospect.phone }}</span><span>{{ prospect.email }}</span></td>
                   <td>{{ prospect.message }}</td>
@@ -61,7 +61,7 @@
         </div>
       </div>
     </section>
-    <section class="p30">
+    <section class="p30 sections">
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Modifier le contenu de la page</h5>

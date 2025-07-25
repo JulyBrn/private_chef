@@ -20,7 +20,9 @@ final class PublicationController extends AbstractController
     $publications = $repository->findAll();
     
     return $this->render('admin/publication.html.twig',[
-      'publications' => $publications
+      'publications' => $publications,
+      'userinfo' => $this->getUser()
+      
     ]);
   }
 
@@ -40,6 +42,7 @@ final class PublicationController extends AbstractController
     return $this->render('admin/publication-update.html.twig',[
       'article' => $article,
       'form' => $form,
+      'userinfo' => $this->getUser()
       ]);
   }
 }

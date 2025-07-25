@@ -6,7 +6,22 @@
 
 {% block body %}
 <div class="home" style="background-image: url('/img/homepage.jpg');">
-	<div class="home-container-outer p20">
+
+	<h2 class="logo-nav ml25">Nicolas Chef .</h2>
+
+	<div class="titleSection pl30">
+		<span class="title" style="margin-right: 10px;">CHEF PRIVÉ À DOMICILE</span>
+		<div style="flex: 1; height: 2px; background-color: rgba(255, 255, 255, 0.3)"></div>
+	</div>
+
+	<div class="accroche">
+		Expérience<br>
+		De Chef<br>
+		Servie Chez<br>
+		Vous!
+	</div>
+</div>
+<div class="home-container-outer p20">
 
     <div class="home-container-inner  flex align-center flex-column">
         <h2 class="mt20 mb10 title_section"> {{ tabArticle.bloc_presentation.title }} </h2>
@@ -102,5 +117,4 @@
 	</div>
 
 	</div>
-</div>
 {% endblock %}
