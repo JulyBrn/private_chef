@@ -121,6 +121,9 @@
 .title-5{font-size: 1.3rem;}
 .title-6{font-size: 1rem;}
 
-.font-noticia { font-family: "Noticia Text", serif; }
+.font-noticia{font-family: "Noticia Text", serif;}
 
-.sections { width:80%; margin:auto; }
+.sections{width:80%; margin:auto;}
+
+.height_full{height: 100vh;}
+.fullwidth{width: 100%;}

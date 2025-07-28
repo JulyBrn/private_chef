@@ -4,17 +4,16 @@ html {
 
 /* Menu  */
 
-nav {position: absolute; z-index: 1;width: 100%; top: 20px;}
-.logo-nav {position:absolute; top:25px; font-family: 'Montserrat', Arial, sans-serif; width: 20%;color: #fff;font-weight: 300; font-size: 2rem;}
+nav {position: absolute; z-index: 1;width: 100%;}
+.logo-nav {position:absolute; top:20px; font-family: 'Montserrat', Arial, sans-serif; width: 20%;color: #fff;font-weight: 300; font-size: 2rem;}
 
-nav ul {border: 1px solid transparent; padding: 15px 40px; border-radius: 27px; background-color: rgba(180, 180, 180, 0.4); position:fixed;}
+nav ul {border: 1px solid transparent; padding: 10px 40px; border-radius: 27px; background-color: rgba(180, 180, 180, 0.4); position:fixed;}
 nav li {font-family: 'Roboto', sans-serif; font-size:1.7rem;}
 nav ul a {color:#fff; transition: transform 0.3s ease, color 0.3s ease;}
 nav ul li:hover {transform: scale(1.1);}
 
 .home {
   position: relative;
-  height: 100vh;
   background-size: inherit;
   background-position: center;
   width: 100%;
@@ -35,14 +34,15 @@ nav ul li:hover {transform: scale(1.1);}
 
 .home-container-inner
 {
-  border: 2px solid #ece8e0;
-  padding: 0 20px;
+  margin-top: 90px;
+  padding: 0 100px;
+  gap: 15%;
 }
 
 .home-container-inner h2
 {
   font-family: 'Montserrat', Arial, sans-serif;
-  font-weight: 400;
+  font-weight: 600;
   font-size: 1.8rem;
   color: #404040;
   text-transform: uppercase;
@@ -50,16 +50,15 @@ nav ul li:hover {transform: scale(1.1);}
 
 .entry-text p
 {
-  font-family: "Noticia Text", serif;
+  font-family: "Montserrat", Arial;
   font-size: 1.5rem;
-  font-weight: 200;
+  font-weight: 600;
   color: #404040;
   line-height: 26px;
 }
 
 .entry-text 
 {
-  max-width: 700px;
   text-align: justify;
 }
 
@@ -249,7 +248,7 @@ nav ul li:hover {transform: scale(1.1);}
 {
   color: #fff;
   font-family: 'Roboto', sans-serif;
-  font-size: 9rem;
+  font-size: 7rem;
   line-height: 0.8;
   padding: 3rem;
   position: absolute;
@@ -275,6 +274,15 @@ nav ul li:hover {transform: scale(1.1);}
   font-size: 2rem;
   font-weight: lighter;
 }
+
+.about-img div {
+  width: 48%;
+  max-height: 700px;
+  overflow: hidden;
+  object-fit: cover;
+}
+
+.about-img img {width: 100%;}
 
 @media (max-width: 768px) {
   .form-wrapper {

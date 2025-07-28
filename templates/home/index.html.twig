@@ -5,7 +5,7 @@
 
 
 {% block body %}
-<div class="home" style="background-image: url('/img/homepage.jpg');">
+<div class="home height_full" style="background-image: url('/img/homepage.jpg');">
 
 	<h2 class="logo-nav ml25">Nicolas Chef .</h2>
 
@@ -21,18 +21,23 @@
 		Vous!
 	</div>
 </div>
-<div class="home-container-outer p20">
 
-    <div class="home-container-inner  flex align-center flex-column">
-        <h2 class="mt20 mb10 title_section"> {{ tabArticle.bloc_presentation.title }} </h2>
-				<div class="entry-text pb20">
-				 	<p>
-						{{ tabArticle.bloc_presentation.text }}
-        	</p>
-				</div>
-    </div>
 
-		<div id="prestations" class="menu-section mt50 flex flex-column align-center">
+<div class="home-container-inner height_full flex">
+		<h2 class="mt20 mb10 title_section"> À propos </h2>
+		<div class="entry-text pb20" style="width:70%">
+			<p>
+				{{ tabArticle.bloc_presentation.text }}
+			</p>
+			<div class="about-img mt30 flex flex-between align-start">
+			
+			<div><img src="/img/about1.jpg" alt="about image 1"/></div>
+			<div><img src="/img/about2.jpg" alt="about image 2" /></div>
+			</div>
+		</div>
+</div>
+
+		{# <div id="prestations" class="menu-section mt50 flex flex-column align-center">
 			<div class="menu-container flex flex-between">
 				<div class="menu-item flex flex-column">
 					<a href="#">
@@ -114,7 +119,6 @@
 		<!-- LightWidget WIDGET -->
 		<script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script>
 		<iframe src="//lightwidget.com/widgets/d8709e3d85a6546697216d4951885db9.html" scrolling="no" allowtransparency="true" class="lightwidget-widget" style="width:100%;border:0;overflow:hidden;"></iframe>
-	</div>
+	</div> #}
 
-	</div>
 {% endblock %}
