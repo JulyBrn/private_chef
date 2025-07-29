@@ -86,5 +86,45 @@ function closeModal(modal)
   modal.style.display = 'none';
 }
 
+/**
+ * Fonction pour basculer la visibilité d'une section dépliable.
+ * Ferme également toutes les autres sections ouvertes.
+ * @param {Event} event - L'événement de clic.
+ * @param {string} contentId - L'ID de la section de contenu à basculer.
+ */
+function toggleCollapsible(event, contentId) {
+    event.preventDefault();
 
+    const content = document.getElementById(contentId);
+    const menuItem = event.currentTarget;
+
+    const allCollapsibleContents = document.querySelectorAll('.collapsible-content');
+    const allMenuItems = document.querySelectorAll('.menu-item');
+
+    const isCurrentlyOpen = content.classList.contains('show');
+
+    allCollapsibleContents.forEach(otherContent => {
+        if (otherContent.id !== contentId && otherContent.classList.contains('show')) {
+            otherContent.classList.remove('show');
+            otherContent.style.maxHeight = '0';
+
+            const otherMenuItem = Array.from(allMenuItems).find(item => {
+                const wrapper = item.closest('.menu-item-wrapper');
+                return wrapper && wrapper.querySelector('.collapsible-content') === otherContent;
+            });
+            if (otherMenuItem) {
+                otherMenuItem.classList.remove('active');
+            }
+        }
+    });
+    if (!isCurrentlyOpen) {
+        content.classList.add('show');
+        menuItem.classList.add('active');
+        content.style.maxHeight = content.scrollHeight + 'px';
+    } else {
+        content.classList.remove('show');
+        menuItem.classList.remove('active');
+        content.style.maxHeight = '0';
+    }
+}
 </script>

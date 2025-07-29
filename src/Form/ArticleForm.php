@@ -14,10 +14,15 @@ class ArticleForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            ->add('subtitle', TextType::class, [
+                'label'=> 'Tag',
+            ])
+
             ->add('title', TextType::class, [
                 'required' => true,
                 'label'=> 'Titre'
             ])
+
             ->add('text', TextareaType::class, [
                 'required' => true,
             ])

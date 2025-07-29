@@ -25,6 +25,8 @@ final class AdminController extends AbstractController
     $publications = $article->findAll();
     $prospects = $prospect->findAll();
 
+    // dd($this->getUser());
+
     // $this->denyAccessUnlessGranted('ROLE_USER');
     return $this->render('admin/admin.html.twig',[
       'publications' => $publications,

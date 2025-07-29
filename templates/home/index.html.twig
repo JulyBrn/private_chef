@@ -10,12 +10,12 @@
 	<h2 class="logo-nav ml25">Nicolas Chef .</h2>
 
 	<div class="titleSection pl30">
-		<span class="title" style="margin-right: 10px;">CHEF PRIVÉ À DOMICILE</span>
+		<span class="title text_shadow_light" style="margin-right: 10px;">CHEF PRIVÉ À DOMICILE</span>
 		<div style="flex: 1; height: 2px; background-color: rgba(255, 255, 255, 0.3)"></div>
 	</div>
 
-	<div class="accroche">
-		Expérience<br>
+	<div class="accroche text_shadow_light">
+		Une Expérience<br>
 		De Chef<br>
 		Servie Chez<br>
 		Vous!
@@ -37,37 +37,60 @@
 		</div>
 </div>
 
-		{# <div id="prestations" class="menu-section mt50 flex flex-column align-center">
-			<div class="menu-container flex flex-between">
-				<div class="menu-item flex flex-column">
-					<a href="#">
-						<img src="/img/plat1.jpg" alt="Plat 1">
-					</a>
-					<div class="menu-text mt15">
-						<h3 class="mb5">{{ tabArticle.bloc_presta_1.title }}</h3>
-						<p class="mt0">{{ tabArticle.bloc_presta_1.text }}</p>
-					</div>
-    		</div>
-    		<div class="menu-item flex flex-column">
-					<a href="#">
-						<img src="/img/plat2.jpg" alt="Plat 2">
-					</a>
-					<div class="menu-text mt15">
-						<h3 class="mb5">{{ tabArticle.bloc_presta_2.title }}</h3>
-						<p class="mt0">{{ tabArticle.bloc_presta_2.text }}</p>
-					</div>
-    		</div>
-    		<div class="menu-item flex flex-column">
-					<a href="#">
-						<img src="/img/plat3.jpg" alt="Plat 3">
-					</a>
-					<div class="menu-text mt15">
-						<h3 class="mb5">{{ tabArticle.bloc_presta_3.title }}</h3>
-						<p class="mt0">{{ tabArticle.bloc_presta_3.text }}</p>
-					</div>
-    		</div>
-  		</div>
-		</div>
+<div id="prestations" class="height_full p50">
+	<div class="accroche_prestation text_shadow_dark">
+		Vos Événements
+		<br>
+		Sur&nbsp;Mesure
+	</div>
+	<div class="videosection" style="fullwidth">
+		<video autoplay muted loop playsinline class="fullwidth">
+			<source src="/video/cooking.mp4" type="video/mp4">
+		</video>
+	</div>
+
+
+	<div
+		class="titlesection">
+		{# <div style="flex: 1; height: 2px; background-color: rgba(255, 255, 255, 0.3)"></div> #}
+		<span class="title text_shadow_dark" style="line-height: 1.2;">De l’intimité d’un dîner privé à la grandeur d’une réception, chaque détail est pensé pour refléter vos envies.
+			<br>
+			Je crée des expériences culinaires uniques, taillées à votre image.</span>
+	</div>
+</div>
+
+<div class="home-container-inner height_full flex" style="padding-top:50px;">
+	<h2 class="mt20 mb10 title_section">
+		Mes préstations
+	</h2>
+
+	    <div class="menu-container mt20" style="width:70%;">
+			 {% for key, one_article in tabArticle %}
+			 		{% if key != "bloc_presentation" %}
+        <div class="menu-item-wrapper">
+            <a href="#" class="menu-item" onclick="toggleCollapsible(event, 'content{{ one_article.id - 1 }}')">
+                <div class="menu-item-image-wrapper">
+                    <img src="/img/plat{{ one_article.id - 1 }}.jpg" alt="image de présentation" class="menu-item-image">
+                </div>
+                <div class="menu-item-content flex flex-column flex-center">
+										<div class="menu-item-tags">{{ one_article.subtitle }}</div>
+                    <h2 class="menu-item-title">{{ one_article.title }}</h2>
+                </div>
+                <div class="menu-item-arrow">&#10140;</div>
+            </a>
+            <div id="content{{ one_article.id - 1 }}" class="collapsible-content">
+                <p>{{ one_article.text }}</p>
+            </div>
+        </div>
+				{% endif %}	
+			{% endfor %}	
+    </div>
+</div>
+
+
+
+
+		{# 
 
 		<div class="form-container p40">
   	{% for message in successMessages %}

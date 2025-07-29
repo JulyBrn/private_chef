@@ -54,7 +54,6 @@ final class HomeController extends AbstractController
         {
             $articlesBySlug[$oneArticle->getSlug()] = $oneArticle;
         }
-
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomePageController',
             'form' => $form,
