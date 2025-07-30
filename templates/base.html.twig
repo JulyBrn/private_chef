@@ -20,13 +20,14 @@
 </head>
 <body>
 <header>
-	<nav class="flex flex-center mt10">
-		<ul class="flex flex-end flex-gap-40 mr50">
-			<li><a href="{{ path('home') }}">Accueil</a></li>
-			<li><a href="{{ path('home') }}#prestations">Prestations</a></li>
-			<li><a href="{{ path('home') }}#contact-form">Contactez-moi</a></li>
-		</ul>
-	</nav>
+  <nav class="flex flex-between align-center mt10">
+    <h2 class="logo-nav ml25">Nicolas Chef .</h2> <!-- Déplacez le logo ici -->
+    <ul class="flex flex-end flex-gap-40 mr50">
+      <li><a href="{{ path('home') }}">Accueil</a></li>
+      <li><a href="{{ path('home') }}#prestations">Prestations</a></li>
+      <li><a href="{{ path('home') }}#contact-form">Contactez-moi</a></li>
+    </ul>
+  </nav>
 </header>
 <main>
 {% block body %}
@@ -120,11 +121,9 @@ function toggleCollapsible(event, contentId) {
     if (!isCurrentlyOpen) {
         content.classList.add('show');
         menuItem.classList.add('active');
-        content.style.maxHeight = content.scrollHeight + 'px';
     } else {
         content.classList.remove('show');
         menuItem.classList.remove('active');
-        content.style.maxHeight = '0';
     }
 }
 </script>

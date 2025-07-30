@@ -7,8 +7,6 @@
 {% block body %}
 <div class="home height_full" style="background-image: url('/img/homepage.jpg');">
 
-	<h2 class="logo-nav ml25">Nicolas Chef .</h2>
-
 	<div class="titleSection pl30">
 		<span class="title text_shadow_light" style="margin-right: 10px;">CHEF PRIVÉ À DOMICILE</span>
 		<div style="flex: 1; height: 2px; background-color: rgba(255, 255, 255, 0.3)"></div>
@@ -70,7 +68,7 @@
         <div class="menu-item-wrapper">
             <a href="#" class="menu-item" onclick="toggleCollapsible(event, 'content{{ one_article.id - 1 }}')">
                 <div class="menu-item-image-wrapper">
-                    <img src="/img/plat{{ one_article.id - 1 }}.jpg" alt="image de présentation" class="menu-item-image">
+                    <img src="/img/plat{{ one_article.id - 1 }}.jpg?v=2" alt="image de présentation" class="menu-item-image">
                 </div>
                 <div class="menu-item-content flex flex-column flex-center">
 										<div class="menu-item-tags">{{ one_article.subtitle }}</div>
@@ -80,12 +78,105 @@
             </a>
             <div id="content{{ one_article.id - 1 }}" class="collapsible-content">
                 <p>{{ one_article.text }}</p>
+								<div class="menu-sections-collapsible">
+									<div class="menu-column-collapsible">
+											<h4>Printemps & Été</h4>
+											<ul>
+													<li>Courgette marinée au citron, tomate datterino confite, pesto de roquette, pistache</li>
+													<li>Gazpacho tomate, poivron, huile verte</li>
+													<li>Mini-burger, champignon crème, pesto ail des ours, copeaux de parmesan</li>
+													<li>Bruschetta, confit d'oignon, aubergine grillée, ciboulette, parmesan</li>
+													<li>Tataki de thon, crème de brocoli, bonite séchée, grenade</li>
+													<li>Artichaut poivrade confit, cecina de bœuf, sauce vierge à l'origan</li>
+													<li>Asperge verte grillée, crumble parmesan, sabayon citron</li>
+													<li>Sashimi de Saint-Pierre, marinade soja / sésame, citronnelle</li>
+													<li>Mini-croque, cécina de bœuf, ricotta, tombée d'épinard, pignon de pain</li>
+											</ul>
+									</div>
+									<div class="menu-column-collapsible">
+											<h4>Automne & Hiver</h4>
+											<ul>
+													<li>Gaufre sarrasin, gravlax de saumon à la fève tonka, crème raifort, combawa</li>
+													<li>Tuile basilic, tartare de dorade royale, gel citron, mélisse</li>
+													<li>Foie gras maison mariné au Porto, brioche toastée, chutney de coing</li>
+													<li>Champignon juste mariné, farce ricotta / ail confit, ciboulette et sumac</li>
+													<li>Huîtres fine de Clair, condiment avocat / kiwi</li>
+													<li>Focaccia toastée, crème de potimarron à l'huile de noisette, féta</li>
+													<li>Saint-Jacques grillée, crème de choux-fleur à la fève de tonka, condiment brocolis / chorizo / parmesan</li>
+													<li>Magret de canard rosé, endive braisée, vinaigrette miel / gingembre</li>
+													<li>Mini-burger, bun maison, haché de bœuf, poitrine de veau fumée, tombée d'oignon, pickles de concombre, cheddar</li>
+											</ul>
+									</div>
+							</div>
             </div>
         </div>
 				{% endif %}	
 			{% endfor %}	
     </div>
 </div>
+
+{# <div class="form-container p40">
+  {% for message in successMessages %}
+    <div class="success-message" id="flashmessage">{{ message }}</div>
+  {% endfor %}
+
+  <form method="POST" id="contact-form">
+    <!-- C'est ce div qui doit avoir la classe form-wrapper -->
+    <div class="form-wrapper flex flex-center flex-gap-40 flex-wrap"> 
+      <div class="form-left mb10">
+        <h2 class="title-1 font-noticia mb5">Contactez-moi</h2>
+        <div class="error">
+          {{ form_errors(form.name) }}
+        </div>
+        {{ form_widget(form.name, {'attr': {'class': 'form-control', 'placeholder': 'Nom'}}) }}
+
+        <div class="error">
+          {{ form_errors(form.surname) }}
+        </div>
+        {{ form_widget(form.surname, {'attr': {'class': 'form-control', 'placeholder': 'Prénom'}}) }}
+
+        <div class="error">
+          {{ form_errors(form.phone) }}
+        </div>
+        {{ form_widget(form.phone, {'attr': {'class': 'form-control', 'placeholder': 'Téléphone'}}) }}
+
+        <div class="error">
+          {{ form_errors(form.email) }}
+        </div>
+        {{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder': 'Email'}}) }}
+
+      </div>
+
+      <div class="form-right mb10">
+        {{ form_widget(form.message, {'attr': {'class': 'form-control', 'placeholder': 'Votre Message', 'rows': '6'}}) }}
+        <div class="error">
+          {{ form_errors(form.message) }}
+        </div>
+        <div class="form-submit">
+          {{ form_rest(form) }}
+          <button type="submit" class="submit-btn">Envoyer</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div> #}
+
+
+<footer class="site-footer">
+  <div class="footer-content">
+    <p>&copy; {{ "now"|date("Y") }} Nicolas Chef. Tous droits réservés.</p>
+    <div class="footer-links">
+      <a href="{{ path('home') }}">Accueil</a>
+      <a href="{{ path('home') }}#prestations">Prestations</a>
+      <a href="{{ path('home') }}#contact-form">Contactez-moi</a>
+    </div>
+    <div class="social-links">
+      <a href="#" aria-label="Facebook">Facebook</a>
+      <a href="#" aria-label="Instagram">Instagram</a>
+      <a href="#" aria-label="LinkedIn">LinkedIn</a>
+    </div>
+  </div>
+</footer>
 
 
 
