@@ -1,172 +1,176 @@
 {% extends 'base.html.twig' %}
 
-{%  set successMessages = app.flashes('success') %}
-
-
+{% set successMessages = app.flashes('success') %}
 
 {% block body %}
 <div class="home height_full" style="background-image: url('/img/homepage.jpg');">
 
-	<div class="titleSection pl30">
-		<span class="title text_shadow_light" style="margin-right: 10px;">CHEF PRIVÉ À DOMICILE</span>
-		<div style="flex: 1; height: 2px; background-color: rgba(255, 255, 255, 0.3)"></div>
-	</div>
+  <div class="titleSection pl30">
+    <span class="title text_shadow_light" style="margin-right: 10px;">CHEF PRIVÉ À DOMICILE</span>
+    <div style="flex: 1; height: 2px; background-color: rgba(255, 255, 255, 0.3)"></div>
+  </div>
 
-	<div class="accroche text_shadow_light">
-		Une Expérience<br>
-		De Chef<br>
-		Servie Chez<br>
-		Vous!
-	</div>
+  <div class="accroche text_shadow_light">
+    Une Expérience<br>
+    De Chef<br>
+    Servie Chez<br>
+    Vous!
+  </div>
 </div>
 
 
-<div class="home-container-inner height_full flex">
-		<h2 class="mt20 mb10 title_section"> À propos </h2>
-		<div class="entry-text pb20" style="width:70%">
-			<p>
-				{{ tabArticle.bloc_presentation.text }}
-			</p>
-			<div class="about-img mt30 flex flex-between align-start">
-			
-			<div><img src="/img/about1.jpg" alt="about image 1"/></div>
-			<div><img src="/img/about2.jpg" alt="about image 2" /></div>
-			</div>
-		</div>
+<div id="aboutme" class="home-container-inner flex height_full">
+    <h2 class="mt20 mb10 title_section"> À propos </h2>
+    <div class="entry-text pb20" style="width:70%">
+      <p>
+        {{ tabArticle.bloc_presentation.text }}
+      </p>
+      <div class="about-img mt30 flex flex-between align-start">
+      
+      <div><img src="/img/about1.jpg" alt="about image 1"/></div>
+      <div><img src="/img/about2.jpg" alt="about image 2" /></div>
+      </div>
+    </div>
 </div>
 
 <div id="prestations" class="height_full p50">
-	<div class="accroche_prestation text_shadow_dark">
-		Vos Événements
-		<br>
-		Sur&nbsp;Mesure
-	</div>
-	<div class="videosection" style="fullwidth">
-		<video autoplay muted loop playsinline class="fullwidth">
-			<source src="/video/cooking.mp4" type="video/mp4">
-		</video>
-	</div>
+  <div class="accroche_prestation text_shadow_dark">
+    Vos Événements
+    <br>
+    Sur&nbsp;Mesure
+  </div>
+  <div class="videosection" style="fullwidth">
+    <video autoplay muted loop playsinline class="fullwidth">
+      <source src="/video/cooking.mp4" type="video/mp4">
+    </video>
+  </div>
 
 
-	<div
-		class="titlesection">
-		{# <div style="flex: 1; height: 2px; background-color: rgba(255, 255, 255, 0.3)"></div> #}
-		<span class="title text_shadow_dark" style="line-height: 1.2;">De l’intimité d’un dîner privé à la grandeur d’une réception, chaque détail est pensé pour refléter vos envies.
-			<br>
-			Je crée des expériences culinaires uniques, taillées à votre image.</span>
-	</div>
+  <div
+    class="titlesection">
+    {# <div style="flex: 1; height: 2px; background-color: rgba(255, 255, 255, 0.3)"></div> #}
+    <span class="title text_shadow_dark" style="line-height: 1.2;">De l’intimité d’un dîner privé à la grandeur d’une réception, chaque détail est pensé pour refléter vos envies.
+      <br>
+      Je crée des expériences culinaires uniques, taillées à votre image.</span>
+  </div>
 </div>
 
-<div class="home-container-inner height_full flex" style="padding-top:50px;">
-	<h2 class="mt20 mb10 title_section">
-		Mes préstations
-	</h2>
+<div class="section-form flex flex-row" style="margin-bottom: 80px; align-items: flex-start;">
+  <div class="home-container-inner flex flex-column" style="padding-top:50px;width:50%;"> {# Keeping padding-top here as it was on the original "Prestations" section #}
+    <h2 class="mb10 title_section"> {# Removed mt20 to let the padding-top of parent control overall top spacing #}
+      Mes préstations
+    </h2>
 
-	    <div class="menu-container mt20" style="width:70%;">
-			 {% for key, one_article in tabArticle %}
-			 		{% if key != "bloc_presentation" %}
-        <div class="menu-item-wrapper">
-            <a href="#" class="menu-item" onclick="toggleCollapsible(event, 'content{{ one_article.id - 1 }}')">
-                <div class="menu-item-image-wrapper">
-                    <img src="/img/plat{{ one_article.id - 1 }}.jpg?v=2" alt="image de présentation" class="menu-item-image">
-                </div>
-                <div class="menu-item-content flex flex-column flex-center">
-										<div class="menu-item-tags">{{ one_article.subtitle }}</div>
-                    <h2 class="menu-item-title">{{ one_article.title }}</h2>
-                </div>
-                <div class="menu-item-arrow">&#10140;</div>
-            </a>
-            <div id="content{{ one_article.id - 1 }}" class="collapsible-content">
-                <p>{{ one_article.text }}</p>
-								<div class="menu-sections-collapsible">
-									<div class="menu-column-collapsible">
-											<h4>Printemps & Été</h4>
-											<ul>
-													<li>Courgette marinée au citron, tomate datterino confite, pesto de roquette, pistache</li>
-													<li>Gazpacho tomate, poivron, huile verte</li>
-													<li>Mini-burger, champignon crème, pesto ail des ours, copeaux de parmesan</li>
-													<li>Bruschetta, confit d'oignon, aubergine grillée, ciboulette, parmesan</li>
-													<li>Tataki de thon, crème de brocoli, bonite séchée, grenade</li>
-													<li>Artichaut poivrade confit, cecina de bœuf, sauce vierge à l'origan</li>
-													<li>Asperge verte grillée, crumble parmesan, sabayon citron</li>
-													<li>Sashimi de Saint-Pierre, marinade soja / sésame, citronnelle</li>
-													<li>Mini-croque, cécina de bœuf, ricotta, tombée d'épinard, pignon de pain</li>
-											</ul>
-									</div>
-									<div class="menu-column-collapsible">
-											<h4>Automne & Hiver</h4>
-											<ul>
-													<li>Gaufre sarrasin, gravlax de saumon à la fève tonka, crème raifort, combawa</li>
-													<li>Tuile basilic, tartare de dorade royale, gel citron, mélisse</li>
-													<li>Foie gras maison mariné au Porto, brioche toastée, chutney de coing</li>
-													<li>Champignon juste mariné, farce ricotta / ail confit, ciboulette et sumac</li>
-													<li>Huîtres fine de Clair, condiment avocat / kiwi</li>
-													<li>Focaccia toastée, crème de potimarron à l'huile de noisette, féta</li>
-													<li>Saint-Jacques grillée, crème de choux-fleur à la fève de tonka, condiment brocolis / chorizo / parmesan</li>
-													<li>Magret de canard rosé, endive braisée, vinaigrette miel / gingembre</li>
-													<li>Mini-burger, bun maison, haché de bœuf, poitrine de veau fumée, tombée d'oignon, pickles de concombre, cheddar</li>
-											</ul>
-									</div>
-							</div>
+    <div id="prestations_card" class="menu-container" style="width:100%;"> {# Removed mt20 as padding-top on parent handles this #}
+      {% for key, one_article in tabArticle %}
+      {% if key != "bloc_presentation" %}
+      <div class="menu-item-wrapper">
+        <a href="#" class="menu-item" onclick="toggleCollapsible(event, 'content{{ one_article.id - 1 }}')">
+          <div class="menu-item-image-wrapper">
+            <img src="/img/plat{{ one_article.id - 1 }}.jpg?v=2" alt="image de présentation" class="menu-item-image">
+          </div>
+          <div class="menu-item-content flex flex-column flex-center">
+            <div class="menu-item-tags">{{ one_article.subtitle }}</div>
+            <h2 class="menu-item-title">{{ one_article.title }}</h2>
+          </div>
+          <div class="menu-item-arrow">&#10140;</div>
+        </a>
+        <div id="content{{ one_article.id - 1 }}" class="collapsible-content">
+          <p>{{ one_article.text }}</p>
+          <p>Mes menus sont entièrement personnalisables. Je les adapte à vos envies et aux spécificités de votre événement.<br>
+            Les suggestions ci-dessous sont des exemples de ce que je peux créer pour vous, conçues avec des produits frais et de saison.<br>Elles vous donneront un aperçu de mon savoir-faire et de la diversité de mes inspirations.</p>
+          <div class="menu-sections-collapsible">
+            <div class="menu-column-collapsible">
+              <h4>Printemps & Été</h4>
+              <ul>
+                <li>Courgette marinée au citron, tomate datterino confite, pesto de roquette, pistache</li>
+                <li>Gazpacho tomate, poivron, huile verte</li>
+                <li>Mini-burger, champignon crème, pesto ail des ours, copeaux de parmesan</li>
+                <li>Bruschetta, confit d'oignon, aubergine grillée, ciboulette, parmesan</li>
+                <li>Tataki de thon, crème de brocoli, bonite séchée, grenade</li>
+                <li>Artichaut poivrade confit, cecina de bœuf, sauce vierge à l'origan</li>
+                <li>Asperge verte grillée, crumble parmesan, sabayon citron</li>
+                <li>Sashimi de Saint-Pierre, marinade soja / sésame, citronnelle</li>
+                <li>Mini-croque, cécina de bœuf, ricotta, tombée d'épinard, pignon de pain</li>
+              </ul>
             </div>
+            <div class="menu-column-collapsible">
+              <h4>Automne & Hiver</h4>
+              <ul>
+                <li>Gaufre sarrasin, gravlax de saumon à la fève tonka, crème raifort, combawa</li>
+                <li>Tuile basilic, tartare de dorade royale, gel citron, mélisse</li>
+                <li>Foie gras maison mariné au Porto, brioche toastée, chutney de coing</li>
+                <li>Champignon juste mariné, farce ricotta / ail confit, ciboulette et sumac</li>
+                <li>Huîtres fine de Clair, condiment avocat / kiwi</li>
+                <li>Focaccia toastée, crème de potimarron à l'huile de noisette, féta</li>
+                <li>Saint-Jacques grillée, crème de choux-fleur à la fève de tonka, condiment brocolis / chorizo / parmesan</li>
+                <li>Magret de canard rosé, endive braisée, vinaigrette miel / gingembre</li>
+                <li>Mini-burger, bun maison, haché de bœuf, poitrine de veau fumée, tombée d'oignon, pickles de concombre, cheddar</li>
+              </ul>
+            </div>
+          </div>
         </div>
-				{% endif %}	
-			{% endfor %}	
+      </div>
+      {% endif %}
+      {% endfor %}
     </div>
+  </div>
+
+  <div class="home-container-inner flex flex-column" style="padding-top:50px;width:50%;"> {# Added padding-top to match the left column #}
+    {% for message in successMessages %}
+    <div class="success-message" id="flashmessage">{{ message }}</div>
+    {% endfor %}
+    <h2 class="mb10 title_section"> {# Removed mt20 for consistency with left #}
+      Contactez-moi
+    </h2>
+
+    <div class="menu-container contact-form-container" style="width:100%; height: fit-content;">
+      <div class="menu-item-wrapper contact-form-wrapper" style="border-bottom: none;">
+        <form method="POST" id="contact-form" class="flex flex-column" style="padding: 25px;">
+          <div class="error">
+            {{ form_errors(form.name) }}
+          </div>
+          {{ form_widget(form.name, {'attr': {'class': 'form-control', 'placeholder': 'Nom'}}) }}
+
+          <div class="error">
+            {{ form_errors(form.surname) }}
+          </div>
+          {{ form_widget(form.surname, {'attr': {'class': 'form-control', 'placeholder': 'Prénom'}}) }}
+
+          <div class="error">
+            {{ form_errors(form.phone) }}
+          </div>
+          {{ form_widget(form.phone, {'attr': {'class': 'form-control', 'placeholder': 'Téléphone'}}) }}
+
+          <div class="error">
+            {{ form_errors(form.email) }}
+          </div>
+          {{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder': 'Email'}}) }}
+
+          <div class="error">
+            {{ form_errors(form.message) }}
+          </div>
+          {{ form_widget(form.message, {'attr': {'class': 'form-control', 'placeholder': 'Votre Message', 'rows': '6'}}) }}
+
+          <div class="form-submit" style="margin-top: 30px;">
+            {{ form_rest(form) }}
+            <button type="submit" class="submit-btn">Envoyer</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
 
-{# <div class="form-container p40">
-  {% for message in successMessages %}
-    <div class="success-message" id="flashmessage">{{ message }}</div>
-  {% endfor %}
-
-  <form method="POST" id="contact-form">
-    <!-- C'est ce div qui doit avoir la classe form-wrapper -->
-    <div class="form-wrapper flex flex-center flex-gap-40 flex-wrap"> 
-      <div class="form-left mb10">
-        <h2 class="title-1 font-noticia mb5">Contactez-moi</h2>
-        <div class="error">
-          {{ form_errors(form.name) }}
-        </div>
-        {{ form_widget(form.name, {'attr': {'class': 'form-control', 'placeholder': 'Nom'}}) }}
-
-        <div class="error">
-          {{ form_errors(form.surname) }}
-        </div>
-        {{ form_widget(form.surname, {'attr': {'class': 'form-control', 'placeholder': 'Prénom'}}) }}
-
-        <div class="error">
-          {{ form_errors(form.phone) }}
-        </div>
-        {{ form_widget(form.phone, {'attr': {'class': 'form-control', 'placeholder': 'Téléphone'}}) }}
-
-        <div class="error">
-          {{ form_errors(form.email) }}
-        </div>
-        {{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder': 'Email'}}) }}
-
-      </div>
-
-      <div class="form-right mb10">
-        {{ form_widget(form.message, {'attr': {'class': 'form-control', 'placeholder': 'Votre Message', 'rows': '6'}}) }}
-        <div class="error">
-          {{ form_errors(form.message) }}
-        </div>
-        <div class="form-submit">
-          {{ form_rest(form) }}
-          <button type="submit" class="submit-btn">Envoyer</button>
-        </div>
-      </div>
-    </div>
-  </form>
-</div> #}
-
+<div class="widget-insta">
+  <!-- LightWidget WIDGET --><script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script><iframe src="//lightwidget.com/widgets/bd3b0e2df8e253dc814519259852dc9a.html" scrolling="no" allowtransparency="true" class="lightwidget-widget" style="width:100%;border:0;overflow:hidden;"></iframe>
+</div>
 
 <footer class="site-footer">
   <div class="footer-content">
     <p>&copy; {{ "now"|date("Y") }} Nicolas Chef. Tous droits réservés.</p>
-    <div class="footer-links">
-      <a href="{{ path('home') }}">Accueil</a>
+    {# <div class="footer-links">
+      
       <a href="{{ path('home') }}#prestations">Prestations</a>
       <a href="{{ path('home') }}#contact-form">Contactez-moi</a>
     </div>
@@ -175,64 +179,32 @@
       <a href="#" aria-label="Instagram">Instagram</a>
       <a href="#" aria-label="LinkedIn">LinkedIn</a>
     </div>
-  </div>
+  </div> #}
 </footer>
 
+<script>
+    // Simple JavaScript for toggling collapsible content
+    function toggleCollapsible(event, contentId) {
+        event.preventDefault(); // Prevent default link behavior
+        const content = document.getElementById(contentId);
+        const menuItem = event.currentTarget; // The <a> tag
 
+        if (content.classList.contains('show')) {
+            content.classList.remove('show');
+            menuItem.classList.remove('active');
+        } else {
+            // Close any other open collapsibles (optional, but good UX)
+            document.querySelectorAll('.collapsible-content.show').forEach(openContent => {
+                openContent.classList.remove('show');
+            });
+            document.querySelectorAll('.menu-item.active').forEach(activeItem => {
+                activeItem.classList.remove('active');
+            });
 
-
-		{# 
-
-		<div class="form-container p40">
-  	{% for message in successMessages %}
-    	<div class="success-message" id="flashmessage">{{ message }}</div>
-  	{% endfor %}
-
-		<form method="POST" id="contact-form">
-			<div class="flex flex-center flex-gap-40 flex-wrap">
-				<div class="form-left mb10">
-					<h2 class="title-1 font-noticia mb5">Contactez-moi</h2>
-					<div class="error">
-    				{{ form_errors(form.name) }}
-					</div>
-					{{ form_widget(form.name, {'attr': {'class': 'form-control', 'placeholder': 'Nom'}}) }}
-
-					<div class="error">
-    				{{ form_errors(form.surname) }}
-					</div>
-					{{ form_widget(form.surname, {'attr': {'class': 'form-control', 'placeholder': 'Prénom'}}) }}
-
-					<div class="error">
-    				{{ form_errors(form.phone) }}
-					</div>
-					{{ form_widget(form.phone, {'attr': {'class': 'form-control', 'placeholder': 'Téléphone'}}) }}
-
-					<div class="error">
-    				{{ form_errors(form.email) }}
-					</div>
-					{{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder': 'Email'}}) }}
-					
-				</div>
-
-				<div class="form-right mb10">
-					{{ form_widget(form.message, {'attr': {'class': 'form-control', 'placeholder': 'Votre Message', 'rows': '6'}}) }}
-					<div class="error">
-    				{{ form_errors(form.message) }}
-					</div>
-					<div class="form-submit">
-						{{ form_rest(form) }}
-						<button type="submit" class="submit-btn">Envoyer</button>
-					</div>
-				</div>
-			</div>
-		</form>
-	</div>
-	
-	<div class="mt50 flex flex-column">
-		<h1 class="title-1 font-noticia mb10">Suivez-moi sur instagram</h1>
-		<!-- LightWidget WIDGET -->
-		<script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script>
-		<iframe src="//lightwidget.com/widgets/d8709e3d85a6546697216d4951885db9.html" scrolling="no" allowtransparency="true" class="lightwidget-widget" style="width:100%;border:0;overflow:hidden;"></iframe>
-	</div> #}
+            content.classList.add('show');
+            menuItem.classList.add('active');
+        }
+    }
+</script>
 
 {% endblock %}
