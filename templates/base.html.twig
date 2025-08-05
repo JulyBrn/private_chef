@@ -23,9 +23,10 @@
   <nav class="flex flex-between align-center mt10">
     <h2 class="logo-nav ml25">Nicolas Chef .</h2> <!-- Déplacez le logo ici -->
     <ul class="flex flex-end flex-gap-40 mr50">
+      <li><a href="{{ path('home') }}">Accueil</a></li>
       <li><a href="{{ path('home') }}#aboutme">À propos</a></li>
       <li><a href="{{ path('home') }}#prestations_card">Prestations</a></li>
-      <li><a href="{{ path('home') }}#contact-form">Contactez-moi</a></li>
+      <li><a href="{{ path('contact') }}">Contactez-moi</a></li>
     </ul>
   </nav>
 </header>
@@ -33,13 +34,19 @@
 {% block body %}
 {% endblock %}
 </main>
-{# <footer class="site-footer">
-  <p class="mb5">&copy; {{ "now"|date("Y") }} Nicolas Chef. Tous droits réservés.</p>
-  <p>
-    <a href="#" onclick="openModal(this)" data-modalid="mentions_legales">Mentions légales</a>|
-    <a href="#" onclick="openModal(this)" data-modalid="confidentialite" >Politique de confidentialité</a>
-  </p>
-</footer> #}
+<footer class="site-footer">
+  <div class="footer-content">
+    <p>&copy; {{ "now"|date("Y") }} Nicolas Chef. Tous droits réservés.</p>
+    {# <div class="footer-links">
+      <a href="{{ path('home') }}">Accueil</a>
+      <a href="{{ path('home') }}#prestations">Prestations</a>
+      <a href="{{ path('contact') }}">Contactez-moi</a>
+    </div>
+    <div class="social-links">
+      <a href="#" aria-label="Instagram">Instagram</a>
+    </div> #}
+  </div>
+</footer>
 
 {# Include modale #}
 {% include 'modals/mentions_legales.html.twig' %}

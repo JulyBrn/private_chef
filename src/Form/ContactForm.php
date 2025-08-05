@@ -20,9 +20,6 @@ class ContactForm extends AbstractType
             ->add('name', TextType::class, [
                 'required' => true
             ])
-            ->add('surname', TextType::class, [
-                'required' => true
-            ])
             ->add('phone', TelType::class, [
             'required' => true 
             ])

@@ -21,7 +21,7 @@ use function Symfony\Component\Clock\now;
 final class HomeController extends AbstractController
 {
     #[Route('/', name: 'home')]
-    public function index(Request $request,  MailerInterface $mailer, EntityManagerInterface $entityManager, ArticleRepository $article, UserPasswordHasherInterface $haser): Response
+    public function index(Request $request,  MailerInterface $mailer, EntityManagerInterface $entityManager, ArticleRepository $article): Response
     {
         $contacts = new Prospect();
         $form = $this->createForm( ContactForm::class , $contacts);
@@ -55,7 +55,7 @@ final class HomeController extends AbstractController
             $articlesBySlug[$oneArticle->getSlug()] = $oneArticle;
         }
         return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomePageController',
+            'controller_name' => 'HomeController',
             'form' => $form,
             'tabArticle' => $articlesBySlug
 

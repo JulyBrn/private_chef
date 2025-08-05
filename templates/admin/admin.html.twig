@@ -50,7 +50,7 @@
               {% for prospect in prospects %}
                 <tr>
                   <td>{{ prospect.date |format_datetime('short', 'short', locale: 'fr') }}</td>
-                  <td>{{ prospect.surname }}  {{ prospect.name }}</td>
+                  <td>{{ prospect.name }}</td>
                   <td class="flex flex-column"><span>{{ prospect.phone }}</span><span>{{ prospect.email }}</span></td>
                   <td>{{ prospect.message }}</td>
                   {# <td><a href="{{ path('publication.update', {id: publication.id } )}}" type="button" class="btn btn-outline-primary">Modifier</a></td> #}

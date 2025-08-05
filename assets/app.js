@@ -8,3 +8,4 @@ import './bootstrap.js';
 import './styles/app.css';
 import './styles/styles.css';
 import './styles/home.css';
+import './styles/contact.css';

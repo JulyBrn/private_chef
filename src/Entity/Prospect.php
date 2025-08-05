@@ -22,11 +22,6 @@ class Prospect
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\Length(min: 3, max: 50, minMessage: 'Le prenom n\'est pas valide.', maxMessage: 'Le prenom n\'est pas valide.')]
-    #[Assert\NotBlank( message: 'Ce champ est obligatoire.')]
-    private ?string $surname = null;
-
-    #[ORM\Column(length: 255)]
     #[Assert\Regex( pattern: '/(?:\+33|0)[\s-]?[1-9](?:[\s-]?\d{2}){4}/', message: 'Le numéro de téléphone n\'est pas valide.')]
     private ?string $phone = null;
 
@@ -56,18 +51,6 @@ class Prospect
     public function setName(string $name): static
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getSurname(): ?string
-    {
-        return $this->surname;
-    }
-
-    public function setSurname(string $surname): static
-    {
-        $this->surname = $surname;
 
         return $this;
     }
