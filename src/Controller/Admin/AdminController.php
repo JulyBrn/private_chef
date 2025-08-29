@@ -34,24 +34,4 @@ final class AdminController extends AbstractController
       'userinfo' => $this->getUser()
     ]);
   }
-
-   #[Route('/admin/edit-{id}', name:"update")]
-  public function update(Article $article, Request $request, EntityManagerInterface $em)
-  {
-    $form = $this->createForm(ArticleForm::class, $article);
-    $form->handleRequest($request);
-
-    if($form->isSubmitted() && $form->isValid())
-    {
-      $em->flush();
-      $this->addFlash('success','La publication a bien été modifiée.');
-      return $this->redirectToRoute('publication');
-    }
-
-    return $this->render('admin/publication-update.html.twig',[
-      'article' => $article,
-      'form' => $form,
-      'userinfo' => $this->getUser()
-      ]);
-  }
 }

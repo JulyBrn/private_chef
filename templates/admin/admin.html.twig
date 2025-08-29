@@ -23,12 +23,12 @@
       {% endblock %}
   </head>
   <body>
-    <header class="mb50">
+    <header class="mb20">
       <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand" href="/admin">Hello</a>
+        <a class="navbar-brand" href="/admin">Administration</a>
       </nav>
     </header>
-    <main>
+    <main class="d-flex flex-column align-items-center">
     {% include 'partials/flash.html.twig' %}
     {% block body %}
     <section class="p30 sections">
@@ -53,7 +53,6 @@
                   <td>{{ prospect.name }}</td>
                   <td class="flex flex-column"><span>{{ prospect.phone }}</span><span>{{ prospect.email }}</span></td>
                   <td>{{ prospect.message }}</td>
-                  {# <td><a href="{{ path('publication.update', {id: publication.id } )}}" type="button" class="btn btn-outline-primary">Modifier</a></td> #}
                 </tr>
               {% endfor %}
               </tbody>
@@ -91,3 +90,22 @@
     </main>
   </body>
 </html>
+
+<script>
+const messageFlash = document.getElementById('message-flash');
+
+window.addEventListener('load', () => {
+  if (!messageFlash) return;
+
+  setTimeout(() => {
+    // Ajoute la classe hide pour déclencher la transition
+    messageFlash.classList.add('hide');
+
+    // On attend la fin de la transition pour appliquer display: none
+    messageFlash.addEventListener('transitionend', function handler() {
+      messageFlash.style.display = 'none';
+      messageFlash.removeEventListener('transitionend', handler);
+    });
+  }, 1500); // délai avant disparition
+});
+</script>

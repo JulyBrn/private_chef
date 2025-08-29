@@ -36,7 +36,7 @@ final class PublicationController extends AbstractController
     {
       $em->flush();
       $this->addFlash('success','La publication a bien été modifiée.');
-      return $this->redirectToRoute('publication');
+      return $this->redirectToRoute('admin');
     }
 
     return $this->render('admin/publication-update.html.twig',[
