@@ -98,14 +98,12 @@ window.addEventListener('load', () => {
   if (!messageFlash) return;
 
   setTimeout(() => {
-    // Ajoute la classe hide pour déclencher la transition
     messageFlash.classList.add('hide');
 
-    // On attend la fin de la transition pour appliquer display: none
     messageFlash.addEventListener('transitionend', function handler() {
       messageFlash.style.display = 'none';
       messageFlash.removeEventListener('transitionend', handler);
     });
-  }, 1500); // délai avant disparition
+  }, 1500);
 });
 </script>
