@@ -15,17 +15,21 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
-
+use Knp\Component\Pager\Pagination\PaginationInterface;
+use Knp\Component\Pager\PaginatorInterface;
 #[IsGranted('ROLE_USER')]
 final class AdminController extends AbstractController
 {
   #[Route('/admin', name: 'admin')]
-  public function index(ArticleRepository $article, ProspectRepository $prospect, UserRepository $users,EntityManagerInterface $em): Response
+  public function index(ArticleRepository $article, ProspectRepository $prospect, Request $request): Response
   {
     $publications = $article->findAll();
-    $prospects = $prospect->findAll();
 
-    // dd($this->getUser());
+    $page = $request->query->getInt('page', 1);
+    $prospects = $prospect->paginateProspect($page);
+
+    dd($request->getLocale());
+    // dd($maxPage);
 
     // $this->denyAccessUnlessGranted('ROLE_USER');
     return $this->render('admin/admin.html.twig',[

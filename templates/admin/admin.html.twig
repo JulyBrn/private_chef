@@ -57,6 +57,10 @@
               {% endfor %}
               </tbody>
             </table>
+            <div class="d-flex justify-content-end">
+               {{ knp_pagination_render(prospects) }}
+            </div>
+           
         </div>
       </div>
     </section>
@@ -68,6 +72,7 @@
             <table class="table mt20 mb0">
               <thead>
                 <tr>
+                  {# <th scope="col">Image</th> #}
                   <th scope="col">Section</th>
                   <th scope="col">Titre</th>
                   <th scope="col"></th>
@@ -76,6 +81,11 @@
               <tbody>
               {% for publication in publications %}
                 <tr>
+                {# {% if( publication.imageName is empty ) %}
+                  <td> x </td>
+                {% else %}
+                  <td><img src="{{ vich_uploader_asset(publication, 'imageFile') }}" alt="image publication" class="img-thumbnail" width="10%"></img></td>
+                {% endif %} #}
                   <td>{{ publication.section }}</td>
                   <td>{{ publication.title }}</td>
                   <td><a href="{{ path('publication.update', {id: publication.id } )}}" type="button" class="btn btn-outline-primary">Modifier</a></td>
