@@ -13,36 +13,36 @@ use Symfony\Component\Routing\Annotation\Route;
 
 final class PublicationController extends AbstractController
 {
-  #[Route('/admin/publication', name:"publication")]
+  #[Route('/admin/publication', name: "publication")]
   public function index(ArticleRepository $repository): Response
   {
 
     $publications = $repository->findAll();
-    
-    return $this->render('admin/publication.html.twig',[
+
+    return $this->render('admin/publication.html.twig', [
       'publications' => $publications,
       'userinfo' => $this->getUser()
-      
+
     ]);
   }
 
-  #[Route('/admin/publication/edit-{id}', name:"publication.update")]
+  #[Route('/admin/publication/edit-{id}', name: "publication.update")]
   public function update(Article $article, Request $request, EntityManagerInterface $em)
   {
     $form = $this->createForm(ArticleForm::class, $article);
     $form->handleRequest($request);
 
-    if($form->isSubmitted() && $form->isValid())
+    if ($form->isSubmitted() && $form->isValid())
     {
       $em->flush();
-      $this->addFlash('success','La publication a bien été modifiée.');
+      $this->addFlash('success', 'La publication a bien été modifiée.');
       return $this->redirectToRoute('admin');
     }
 
-    return $this->render('admin/publication-update.html.twig',[
+    return $this->render('admin/publication-update.html.twig', [
       'article' => $article,
       'form' => $form,
       'userinfo' => $this->getUser()
-      ]);
+    ]);
   }
 }

@@ -12,6 +12,6 @@ knp_paginator:
         page_out_of_range: ignore       # ignore, fix, or throwException when the page is out of range
         default_limit: 10               # default number of items per page
     template:
-        pagination: '@KnpPaginator/Pagination/twitter_bootstrap_v4_pagination.html.twig'     # sliding pagination controls template
-        sortable: '@KnpPaginator/Pagination/twitter_bootstrap_v4_material_design_icons_sortable_link.html.twig' # sort link template
+        pagination: 'pagination/navigation.html.twig'     # sliding pagination controls template
+        sortable: 'pagination/sortable.html.twig' # sort link template
         filtration: '@KnpPaginator/Pagination/twitter_bootstrap_v4_filtration.html.twig'  # filters template

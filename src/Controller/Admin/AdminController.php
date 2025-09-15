@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Controller\Admin;
 
@@ -17,6 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
+
 #[IsGranted('ROLE_USER')]
 final class AdminController extends AbstractController
 {
@@ -28,11 +29,10 @@ final class AdminController extends AbstractController
     $page = $request->query->getInt('page', 1);
     $prospects = $prospect->paginateProspect($page);
 
-    dd($request->getLocale());
     // dd($maxPage);
 
     // $this->denyAccessUnlessGranted('ROLE_USER');
-    return $this->render('admin/admin.html.twig',[
+    return $this->render('admin/admin.html.twig', [
       'publications' => $publications,
       'prospects' => $prospects,
       'userinfo' => $this->getUser()
