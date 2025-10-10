@@ -6,6 +6,7 @@ use App\Entity\Article;
 use App\Entity\Prospect;
 use App\Form\ArticleForm;
 use App\Repository\ArticleRepository;
+use App\Repository\MenuRepository;
 use App\Repository\ProspectRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManager;
@@ -22,14 +23,15 @@ use Knp\Component\Pager\PaginatorInterface;
 final class AdminController extends AbstractController
 {
   #[Route('/admin', name: 'admin')]
-  public function index(ArticleRepository $article, ProspectRepository $prospect, Request $request): Response
+  public function index(ArticleRepository $article, ProspectRepository $prospect, MenuRepository $menu,Request $request): Response
   {
     $publications = $article->findAll();
 
-    $page = $request->query->getInt('page', 1);
+    $menu = $menu->findAll();
+    
+    $page = $request->query->getInt('page',1);
     $prospects = $prospect->paginateProspect($page);
-
-    // dd($maxPage);
+    
 
     // $this->denyAccessUnlessGranted('ROLE_USER');
     return $this->render('admin/admin.html.twig', [

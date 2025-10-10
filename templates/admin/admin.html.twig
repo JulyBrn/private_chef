@@ -37,7 +37,8 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Demandes de contact</h5>
-          <p class="card-subtitle mb-2 text-muted">Retrouve ici toutes les demandes de contact envoyées via le formulaire.</p>
+          <p class="card-subtitle mb-2 text-muted">Retrouve ici toutes les demandes de contact envoyées via le formulaire.<br>
+          <span class="text-primary mt5"> Tu as {{ prospects.getTotalItemCount }} demande{{ (prospects.getTotalItemCount > 1) ? 's' : '' }} </p> </span>
             <table class="table mt20 mb0">
               <thead>
                 <tr>
@@ -59,10 +60,11 @@
               {% endfor %}
               </tbody>
             </table>
+            {% if prospects.getTotalItemCount > 10 %}
             <div class="d-flex justify-content-end">
                {{ knp_pagination_render(prospects) }}
             </div>
-           
+            {% endif %}
         </div>
       </div>
     </section>
@@ -99,6 +101,32 @@
       </div>
     </section>
     {% endblock %}
+     <section class="p30 sections">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Gestion des menus et des plats</h5>
+          <p class="card-subtitle mb-2 text-muted">Cet espace te permet de gérer les exemples des menus que tu veux rendre visible sur ton site.</p>
+            <table class="table mt20 mb0">
+              <thead>
+                <tr>
+                  <th scope="col">Section</th>
+                  <th scope="col">Titre</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+              {% for publication in publications %}
+                <tr>
+                  <td>{{ publication.section }}</td>
+                  <td>{{ publication.title }}</td>
+                  <td><a href="{{ path('publication.update', {id: publication.id } )}}" type="button" class="btn btn-outline-primary">Modifier</a></td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
     </main>
   </body>
 </html>

@@ -53,11 +53,12 @@
   </div>
 </div>
 
-<div id="prestations_card" class="home-container-inner flex">
+{# <div id="prestations_card" class="home-container-inner flex">
     <h2 class="mt20 mb10 title_section"> Mes préstations </h2>
     <div class="entry-text pb20" style="width:70%">
       <div id="prestations_card" class="menu-container" style="width:100%;"> {# Removed mt20 as padding-top on parent handles this #}
       {% for key, one_article in tabArticle %}
+      
       {% if key != "bloc_presentation" %}
       <div class="menu-item-wrapper">
         <a href="#" class="menu-item" onclick="toggleCollapsible(event, 'content{{ one_article.id - 1 }}')">
@@ -74,43 +75,25 @@
           <p>{{ one_article.text }}</p>
           <p>Mes menus sont entièrement personnalisables. Je les adapte à vos envies et aux spécificités de votre événement.<br>
             Les suggestions ci-dessous sont des exemples de ce que je peux créer pour vous, conçues avec des produits frais et de saison.<br>Elles vous donneront un aperçu de mon savoir-faire et de la diversité de mes inspirations.</p>
-          <div class="menu-sections-collapsible">
-            <div class="menu-column-collapsible">
-              <h4>Printemps & Été</h4>
-              <ul>
-                <li>Courgette marinée au citron, tomate datterino confite, pesto de roquette, pistache</li>
-                <li>Gazpacho tomate, poivron, huile verte</li>
-                <li>Mini-burger, champignon crème, pesto ail des ours, copeaux de parmesan</li>
-                <li>Bruschetta, confit d'oignon, aubergine grillée, ciboulette, parmesan</li>
-                <li>Tataki de thon, crème de brocoli, bonite séchée, grenade</li>
-                <li>Artichaut poivrade confit, cecina de bœuf, sauce vierge à l'origan</li>
-                <li>Asperge verte grillée, crumble parmesan, sabayon citron</li>
-                <li>Sashimi de Saint-Pierre, marinade soja / sésame, citronnelle</li>
-                <li>Mini-croque, cécina de bœuf, ricotta, tombée d'épinard, pignon de pain</li>
-              </ul>
-            </div>
-            <div class="menu-column-collapsible">
-              <h4>Automne & Hiver</h4>
-              <ul>
-                <li>Gaufre sarrasin, gravlax de saumon à la fève tonka, crème raifort, combawa</li>
-                <li>Tuile basilic, tartare de dorade royale, gel citron, mélisse</li>
-                <li>Foie gras maison mariné au Porto, brioche toastée, chutney de coing</li>
-                <li>Champignon juste mariné, farce ricotta / ail confit, ciboulette et sumac</li>
-                <li>Huîtres fine de Clair, condiment avocat / kiwi</li>
-                <li>Focaccia toastée, crème de potimarron à l'huile de noisette, féta</li>
-                <li>Saint-Jacques grillée, crème de choux-fleur à la fève de tonka, condiment brocolis / chorizo / parmesan</li>
-                <li>Magret de canard rosé, endive braisée, vinaigrette miel / gingembre</li>
-                <li>Mini-burger, bun maison, haché de bœuf, poitrine de veau fumée, tombée d'oignon, pickles de concombre, cheddar</li>
-              </ul>
-            </div>
-          </div>
+            {% for menu in one_article.menus %}
+              <div class="menu-sections-collapsible">
+                <div class="menu-column-collapsible">
+                  <h4>{{ menu.title }}</h4>
+                  <ul>
+                    {# {% for plat in menu.plats %} #}
+                      <li>test</li>
+                    {# {% endfor %} #}
+                  </ul>
+                </div>
+              </div>
+            {% endfor %}
         </div>
       </div>
       {% endif %}
       {% endfor %}
     </div>
     </div>
-</div>
+{# </div> #}
 
 <script>
    

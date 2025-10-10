@@ -24,7 +24,7 @@ class ProspectRepository extends ServiceEntityRepository
         return $this->paginator->paginate(
             $this->createQueryBuilder('r'),
             $page,
-            1
+            10
         );
     }
 }
