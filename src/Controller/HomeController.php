@@ -50,33 +50,12 @@ final class HomeController extends AbstractController
 
         $tabArticle = $article->findAll();
 
-        $articlesBySlug = [];
-        foreach ($tabArticle as $oneArticle)
-        {
-            $articlesBySlug[$oneArticle->getSlug()] = $oneArticle;
-        }
+      
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
             'form' => $form,
-            'tabArticle' => $articlesBySlug
+            'tabArticle' => $tabArticle
 
         ]);
     }
-    
-    // #[Route('/prestations', name: 'prestations')]
-    // public function prestation(): Response
-    // {
-    //     return $this->render('prestations/index.html.twig');
-    // }
-
-    // #[Route('/contact', name: 'contact')]
-    // public function contact(): Response
-    // {
-    //     return $this->redirect($this->generateUrl('home').'#contact-form');
-    // }
-    // #[Route('/gallery', name: 'gallery')]
-    // public function gallery(): Response
-    // {
-    //     return $this->render('gallery/index.html.twig');
-    // }
 }

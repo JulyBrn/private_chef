@@ -1,0 +1,124 @@
+{% extends 'admin/base_admin.html.twig' %}
+
+
+{% block body %}
+<div class="d-flex" id="wrapper">
+    
+    {# ============== SIDEBAR / BARRE LATÉRALE - Couleur Sobbre ============== #}
+    <div class="sidebar-wrapper bg-dark text-white border-end shadow-sm" id="sidebar-wrapper">
+        <div class="sidebar-heading bg-dark text-white p-3 fs-4 border-bottom border-secondary">
+            <i class="fas fa-desktop me-2"></i> Administration
+        </div>
+        <div class="list-group list-group-flush pt-2">
+            
+            {# 1. Tableau de Bord #}
+            <a href="{{ path('admin') }}" class="list-group-item list-group-item-action bg-dark text-white p-3 sidebar-link active {% if app.request.attributes.get('_route') == 'admin_dashboard' %}active{% endif %}">
+                <i class="fas fa-tachometer-alt me-2"></i> Tableau de Bord
+            </a>
+            
+            {# 2. Gestion des Menus #}
+            <a href="" class="list-group-item list-group-item-action bg-dark text-white p-3 sidebar-link {% if app.request.attributes.get('_route') == 'menu.index' %}active-sober{% endif %}">
+                <i class="fas fa-list-alt me-2"></i> Gestion des Menus
+            </a>
+            
+            {# 3. Gestion des Prestations #}
+            <a href="" class="list-group-item list-group-item-action bg-dark text-white p-3 sidebar-link {% if app.request.attributes.get('_route') == 'prestation.index' %}active-sober{% endif %}">
+                <i class="fas fa-briefcase me-2"></i> Gestion des Prestations
+            </a>
+            
+            {# 4. Demandes de Contact #}
+            <a href="" class="list-group-item list-group-item-action bg-dark text-white p-3 sidebar-link {% if app.request.attributes.get('_route') == 'contact.index' %}active-sober{% endif %}">
+                <i class="fas fa-envelope me-2"></i> Demandes de Contact
+            </a>
+
+            <a href="" class="list-group-item list-group-item-action bg-dark text-white p-3 border-top mt-auto sidebar-link">
+                <i class="fas fa-sign-out-alt me-2"></i> Déconnexion
+            </a>
+        </div>
+    </div>
+    
+    {# ============== PAGE CONTENT WRAPPER ============== #}
+    <div id="page-content-wrapper" class="w-100">
+
+        {# --- TOP NAVBAR --- #}
+        <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom shadow-sm">
+            <div class="container-fluid">
+                <h2 class="navbar-brand mb-0 text-dark fw-light">{% block title_admin %}Tableau de Bord{% endblock %}</h2>
+                
+                <div class="d-flex align-items-center">
+                    <span class="navbar-text me-3 fw-bold text-dark">
+                        <i class="fas fa-user-circle me-1"></i> {{ app.user ? app.user.username : 'Admin' }}
+                    </span>
+                    <button class="btn btn-outline-secondary me-2"><i class="fas fa-bell"></i></button>
+                    <button class="btn btn-outline-secondary"><i class="fas fa-cog"></i></button>
+                </div>
+            </div>
+        </nav>
+
+        {# --- MAIN CONTENT ZONE --- #}
+        <div class="container-fluid p-4">
+            {# Messages Flash #}
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ label }}" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+            
+            {% block content_admin %}{% endblock %}
+        </div>
+    </div>
+</div>
+<style>
+    .sidebar-wrapper {
+        min-height: 100vh;
+        width: 250px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        overflow-y: auto;
+    }
+    #page-content-wrapper {
+        margin-left: 250px;
+        background-color: #f8f9fa;
+    }
+
+    .list-group-item.bg-dark {
+        border: none !important;
+        border-radius: 0;
+    }
+    .list-group-item.bg-dark:hover {
+        background-color: #495057 !important;
+    }
+    
+    .sidebar-link.active-sober {
+        color: #1a237e !important;
+        border-left: 5px solid #4db6ac !important;
+    }
+    .sidebar-heading {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+    .sidebar-link {
+        color: rgba(255, 255, 255, 0.9) !important;
+    }
+
+    .card.kpi-card {
+        border: 1px solid #dee2e6;
+        border-radius: 0.25rem;
+        box-shadow: none !important;
+    }
+    
+    .kpi-title {
+        color: #6c757d;
+        font-size: 0.85rem;
+        font-weight: 500;
+    }
+    .kpi-value {
+        font-size: 2rem;
+        font-weight: 600;
+        color: #333;
+    }
+</style>
+{% endblock %}

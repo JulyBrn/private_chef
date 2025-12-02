@@ -21,7 +21,7 @@
     <h2 class="mt20 mb10 title_section"> À propos </h2>
     <div class="entry-text pb20" style="width:70%">
       <p>
-        {{ tabArticle.bloc_presentation.text }}
+        Après plus de 20 ans passés dans l’univers exigeant de la restauration, j’ai choisi de mettre mon savoir-faire au service d’une cuisine plus personnelle. En tant que chef privé et traiteur, je vous propose une expérience sur mesure, où chaque plat est pensé pour sublimer vos produits et vos envies.
       </p>
       <div class="about-img mt30 flex flex-between align-start">
       
@@ -53,17 +53,16 @@
   </div>
 </div>
 
-{# <div id="prestations_card" class="home-container-inner flex">
+<div id="prestations_card" class="home-container-inner flex">
     <h2 class="mt20 mb10 title_section"> Mes préstations </h2>
     <div class="entry-text pb20" style="width:70%">
-      <div id="prestations_card" class="menu-container" style="width:100%;"> {# Removed mt20 as padding-top on parent handles this #}
+      <div id="prestations_card" class="menu-container" style="width:100%;">
       {% for key, one_article in tabArticle %}
       
-      {% if key != "bloc_presentation" %}
       <div class="menu-item-wrapper">
         <a href="#" class="menu-item" onclick="toggleCollapsible(event, 'content{{ one_article.id - 1 }}')">
           <div class="menu-item-image-wrapper">
-            <img src="/img/plat{{ one_article.id - 1 }}.jpg?v=2" alt="image de présentation" class="menu-item-image">
+            <img src="/img/plat{{ one_article.id }}.jpg?v=2" alt="image de présentation" class="menu-item-image">
           </div>
           <div class="menu-item-content flex flex-column flex-center">
             <div class="menu-item-tags">{{ one_article.subtitle }}</div>
@@ -72,28 +71,27 @@
           <div class="menu-item-arrow">&#10140;</div>
         </a>
         <div id="content{{ one_article.id - 1 }}" class="collapsible-content">
-          <p>{{ one_article.text }}</p>
-          <p>Mes menus sont entièrement personnalisables. Je les adapte à vos envies et aux spécificités de votre événement.<br>
-            Les suggestions ci-dessous sont des exemples de ce que je peux créer pour vous, conçues avec des produits frais et de saison.<br>Elles vous donneront un aperçu de mon savoir-faire et de la diversité de mes inspirations.</p>
+          <p style="white-space: pre-wrap;" >{{ one_article.text }}</p>
+            <div class="menu-sections-collapsible">
             {% for menu in one_article.menus %}
-              <div class="menu-sections-collapsible">
                 <div class="menu-column-collapsible">
                   <h4>{{ menu.title }}</h4>
                   <ul>
-                    {# {% for plat in menu.plats %} #}
-                      <li>test</li>
-                    {# {% endfor %} #}
+                    {% for plat in menu.plats %}
+                    <li>
+                      {{ plat.libelle }}
+                    </li>
+                    {% endfor %}
                   </ul>
                 </div>
-              </div>
             {% endfor %}
+            </div>
         </div>
       </div>
-      {% endif %}
       {% endfor %}
     </div>
     </div>
-{# </div> #}
+</div>
 
 <script>
    

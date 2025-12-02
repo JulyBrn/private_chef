@@ -17,13 +17,21 @@ class MenuForm extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('plat', CollectionType::class, [
-              'entry_type' => PlatsTypeForm::class,[
+            ->add('plats', EntityType::class, array(
+                'class'        => Plats::class,
+                'expanded'     => true,
+                'multiple'     => true,
                 'by_reference' => false,
-              ]
-            ])
-
-        ;
+                'label'        => 'Ajouter des plats'
+            ))
+            ->add('newPlats', CollectionType::class, array(
+              'entry_type'   => PlatsTypeForm::class,
+              'allow_add'    => true,
+              'allow_delete' => true,
+              'by_reference' => false,
+              'mapped'       => false,
+              'label'        => false,
+            ));
     }
     public function configureOptions(OptionsResolver $resolver): void
     {

@@ -29,12 +29,6 @@ class Article
     #[ORM\Column]
     private ?\DateTime $date = null;
 
-    #[ORM\Column(length: 100)]
-    private ?string $section = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $slug = null;
-
     #[ORM\Column(length: 255)]
     private ?string $subtitle = null;
 
@@ -93,30 +87,6 @@ class Article
     public function setDate(\DateTime $date): static
     {
         $this->date = $date;
-
-        return $this;
-    }
-
-    public function getSection(): ?string
-    {
-        return $this->section;
-    }
-
-    public function setSection(string $section): static
-    {
-        $this->section = $section;
-
-        return $this;
-    }
-
-    public function getSlug(): ?string
-    {
-        return $this->slug;
-    }
-
-    public function setSlug(string $slug): static
-    {
-        $this->slug = $slug;
 
         return $this;
     }

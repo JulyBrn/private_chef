@@ -18,19 +18,23 @@ class Menu
     /**
      * @var Collection<int, Article>
      */
+
     #[ORM\ManyToMany(targetEntity: Article::class, mappedBy: 'menus')]
     private Collection $article;
 
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
-    #[ORM\ManyToOne(inversedBy: 'idmenu')]
-    private ?Plats $plats = null;
+    /**
+     * @var Collection<int, Plats>
+     */
+
+    #[ORM\ManyToMany(targetEntity: Plats::class, inversedBy: 'menus')]
+    private Collection $plats;
 
     public function __construct()
     {
-        $this->article = new ArrayCollection();
-
+        $this->plats = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -74,14 +78,26 @@ class Menu
         return $this;
     }
 
-    public function getPlats(): ?Plats
+    /**
+     * @return Collection<int, Plats>
+     */
+    public function getPlats(): Collection
     {
         return $this->plats;
     }
 
-    public function setPlats(?Plats $plats): static
+    public function addPlat(Plats $plat): self
     {
-        $this->plats = $plats;
+        if (!$this->plats->contains($plat)) {
+            $this->plats->add($plat);
+        }
+
+        return $this;
+    }
+
+    public function removePlat(Plats $plat): self
+    {
+        $this->plats->removeElement($plat);
 
         return $this;
     }

@@ -1,0 +1,89 @@
+{% extends 'admin/admin.html.twig' %}
+
+{% block title "Ajouter un nouvel exemple de menu" %}
+{% block body %}
+    <section class="p30 sections">
+        {{ form_start(form) }}
+
+        {{ form_row(form.title) }}
+        {{ form_row(form.plats) }}
+
+        <div id="new_plats_widget">
+            <div data-prototype="{{ form_widget(form.newPlats.vars.prototype)|e('html_attr') }}"
+                 data-index="{{ form.newPlats|length }}"
+                 class="new-plats-collection-container">
+            
+                {% for newPlat in form.newPlats  %}
+                    <div class="plat-item">
+                        {{ form_row(newPlat.libelle) }}
+                    </div>
+                {% endfor %}
+            </div>
+
+            <button type="button" class="add-plat-btn btn btn-secondary mt-3">
+                Ajouter un plat
+            </button>
+        </div>
+
+        {{ form_rest(form) }} 
+
+        <div>
+            <button type="button" class="btn btn-outline-secondary mr2" onclick="window.history.back();">Retour</button>
+            <button type="submit" class="btn btn-primary">Ajouter</button>
+        </div>
+        
+        {{ form_end(form) }}
+    </section>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+            const addButton = document.querySelector('.add-plat-btn');
+            const container = document.querySelector('.new-plats-collection-container');
+
+            if (addButton && container) {
+                // Récupère l'index de départ (important si la collection a déjà des éléments)
+                let index = container.dataset.index || container.children.length;
+
+                addButton.addEventListener('click', function() {
+                    addFormToCollection(container, index);
+                    index++; // Incrémente l'index pour le prochain ajout
+                });
+            }
+
+            function addFormToCollection(collectionHolder, currentIndex)
+            {
+                const prototype = collectionHolder.dataset.prototype;
+
+                // 2. Remplace le placeholder __name__ par l'index courant (ex: 0, 1, 2...)
+                let newForm = prototype.replace(/__name__/g, currentIndex);
+                
+                // 3. Crée un nouvel élément div pour contenir le formulaire
+                const newPlatDiv = document.createElement('div');
+                newPlatDiv.classList.add('plat-item', 'mb-3');
+                newPlatDiv.innerHTML = newForm;
+
+                // 4. Ajout d'un bouton de suppression pour ce nouvel élément
+                const removeButton = document.createElement('button');
+                removeButton.type = 'button';
+                removeButton.classList.add('btn', 'btn-danger', 'btn-sm', 'ms-2');
+                removeButton.textContent = 'Supprimer ce plat';
+                
+                removeButton.addEventListener('click', function() {
+                    newPlatDiv.remove();
+                });
+
+                // Le prototype contient le label et l'input. On ajoute le bouton de suppression à la fin.
+                // Attention, le prototype génère le champ du plat, ex: 'menu_form_newPlats_0_libelle'. 
+                // Pour que le bouton de suppression soit bien visible, on peut l'insérer après l'input ou l'englober.
+                
+                // Pour un meilleur affichage, on cherche le champ 'libelle' et on y ajoute le bouton (simplification ici)
+                
+                newPlatDiv.querySelector('input[type="text"]').parentNode.appendChild(removeButton); 
+
+                // 5. Insère le nouveau formulaire dans le conteneur
+                collectionHolder.appendChild(newPlatDiv);
+            }
+        });
+    </script>
+    
+{% endblock %}

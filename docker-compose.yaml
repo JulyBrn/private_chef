@@ -1,0 +1,83 @@
+version: '3.8'
+
+services:
+  # -----------------------------------------------------------------
+  # PHP Symfony
+  # -----------------------------------------------------------------
+  vitrine_php:
+    build:
+      context: ../docker/php
+    volumes:
+      - ./:/var/www/html
+    networks:
+      - symfony_vitrine
+    depends_on:
+      - vitrine_database
+      - vitrine_mailpit
+
+  # -----------------------------------------------------------------
+  # Web Server (Nginx)
+  # -----------------------------------------------------------------
+  vitrine_web:
+    image: nginx:alpine
+    volumes:
+      - ./:/var/www/html
+      - ../docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - "8085:80"
+    networks:
+      - symfony_vitrine
+    depends_on:
+      - vitrine_php
+
+  # -----------------------------------------------------------------
+  # MySQL
+  # -----------------------------------------------------------------
+  vitrine_database:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: app
+      MYSQL_USER: symfony_user
+      MYSQL_PASSWORD: symfony_password
+    ports:
+      - "3308:3306"
+    volumes:
+      - vitrine_mysql_data:/var/lib/mysql
+    networks:
+      - symfony_vitrine
+
+  # -----------------------------------------------------------------
+  # PhpMyAdmin
+  # -----------------------------------------------------------------
+  vitrine_phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: vitrine_database
+      PMA_USER: symfony_user
+      PMA_PASSWORD: symfony_password
+    ports:
+      - "8082:80"
+    networks:
+      - symfony_vitrine
+
+  # -----------------------------------------------------------------
+  # Mailpit
+  # -----------------------------------------------------------------
+  vitrine_mailpit:
+    image: axllent/mailpit
+    restart: always
+    ports:
+      - "65238:1025"
+      - "65240:8025"
+    environment:
+      MP_SMTP_AUTH_ACCEPT_ANY: "true"
+      MP_SMTP_AUTH_ALLOW_INSECURE: "true"
+    networks:
+      - symfony_vitrine
+
+volumes:
+  vitrine_mysql_data:
+
+networks:
+  symfony_vitrine:

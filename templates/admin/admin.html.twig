@@ -1,149 +1,156 @@
-<!DOCTYPE html>
+{% extends 'admin/sidebar_admin.html.twig' %}  
 
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Administration{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-				<link rel="preconnect" href="https://fonts.googleapis.com">
-				<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-				<link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
-				<link href="https://fonts.googleapis.com/css2?family=Noticia+Text:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-				<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noticia+Text:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+{% block title_admin %}Tableau de Bord et Gestions{% endblock %}
 
-
-         {% block javascripts %}
-            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-      {% endblock %}
-
-      {% block stylesheets %}
-        <link rel="stylesheet" href="{{ asset('styles/styles.css') }}">
-      {% endblock %}
-  </head>
-  <body>
-    <header class="mb20">
-      <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand" href="/admin">Administration</a>
-      </nav>
-    </header>
-    <main class="d-flex flex-column align-items-center">
-    {% include 'partials/flash.html.twig' %}
-    {% block body %}
-    <section class="p30 sections">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Demandes de contact</h5>
-          <p class="card-subtitle mb-2 text-muted">Retrouve ici toutes les demandes de contact envoyées via le formulaire.<br>
-          <span class="text-primary mt5"> Tu as {{ prospects.getTotalItemCount }} demande{{ (prospects.getTotalItemCount > 1) ? 's' : '' }} </p> </span>
-            <table class="table mt20 mb0">
-              <thead>
-                <tr>
-                  <th scope="col">{{ knp_pagination_sortable(prospects, 'Date', 'r.date') }}</th>
-                  <th scope="col">{{ knp_pagination_sortable(prospects, 'Contact', 'r.name') }}</th>
-                  <th scope="col">Coordonnées</th>
-                  <th scope="col">Message</th>
-                  <th scope="col"></th>
-                </tr>
-              </thead>
-              <tbody>
-              {% for prospect in prospects %}
-                <tr>
-                  <td>{{ prospect.date |format_datetime('short', 'short', locale: 'fr') }}</td>
-                  <td>{{ prospect.name }}</td>
-                  <td class="flex flex-column"><span>{{ prospect.phone }}</span><span>{{ prospect.email }}</span></td>
-                  <td>{{ prospect.message }}</td>
-                </tr>
-              {% endfor %}
-              </tbody>
-            </table>
-            {% if prospects.getTotalItemCount > 10 %}
-            <div class="d-flex justify-content-end">
-               {{ knp_pagination_render(prospects) }}
+{% block content_admin %}
+    
+    {# --- CARDS KPI (Optionnel, comme dans la maquette) --- #}
+    <div class="row mb-4">
+        {# Nouvelle Demande de Contact #}
+        <div class="col-md-4">
+            <div class="card kpi-card card-kpi-1 h-100"> 
+                <div class="card-body">
+                    <h5 class="card-title text-uppercase kpi-title">DEMANDES NON TRAITÉES</h5>
+                    <div class="kpi-value">{{ prospects.getTotalItemCount }}</div>
+                </div>
             </div>
-            {% endif %}
         </div>
-      </div>
+        {# Prestations Actives #}
+        <div class="col-md-4">
+            <div class="card kpi-card card-kpi-2 h-100">
+                <div class="card-body">
+                    <h5 class="card-title text-uppercase kpi-title">PRESTATIONS PUBLIÉES</h5>
+                    <div class="kpi-value">{{ publications|length }}</div>
+                </div>
+            </div>
+        </div>
+        {# Menus Actifs #}
+        <div class="col-md-4">
+            <div class="card kpi-card card-kpi-3 h-100">
+                <div class="card-body">
+                    <h5 class="card-title text-uppercase kpi-title">MENUS DISPONIBLES</h5>
+                    <div class="kpi-value">{{ tabMenu|length }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    {# --- SECTION 1 : DEMANDES DE CONTACT --- #}
+    <section class="mb-5">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Demandes de contact</h5>
+                <p class="card-subtitle mb-2 text-muted">Tu as <span class="text-primary fw-bold">{{ prospects.getTotalItemCount }}</span> demande{{ (prospects.getTotalItemCount > 1) ? 's' : '' }} à traiter.</p>
+                
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover mt-3 mb-0">
+                        <thead>
+                            <tr>
+                                <th scope="col">{{ knp_pagination_sortable(prospects, 'Date', 'r.date') }}</th>
+                                <th scope="col">{{ knp_pagination_sortable(prospects, 'Contact', 'r.name') }}</th>
+                                <th scope="col">Coordonnées</th>
+                                <th scope="col">Message</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for prospect in prospects %}
+                            <tr>
+                                <td>{{ prospect.date |format_datetime('short', 'short', locale: 'fr') }}</td>
+                                <td>{{ prospect.name }}</td>
+                                <td><div class="d-flex flex-column"><span>{{ prospect.phone }}</span><span class="text-muted small">{{ prospect.email }}</span></div></td>
+                                <td>{{ prospect.message|length > 50 ? prospect.message|slice(0, 50) ~ '...' : prospect.message }}</td>
+                                <td><a href="#" class="btn btn-sm btn-outline-primary">Voir / Traiter</a></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% if prospects.getTotalItemCount > 10 %}
+                <div class="d-flex justify-content-end mt-3">
+                    {{ knp_pagination_render(prospects) }}
+                </div>
+                {% endif %}
+            </div>
+        </div>
     </section>
-    <section class="p30 sections">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Modifier le contenu de la page</h5>
-          <p class="card-subtitle mb-2 text-muted">Utilise cet espace pour mettre à jour les textes affichés dans les différentes sections de la page, comme la présentation ou les prestations proposées.</p>
-            <table class="table mt20 mb0">
-              <thead>
-                <tr>
-                  {# <th scope="col">Image</th> #}
-                  <th scope="col">Section</th>
-                  <th scope="col">Titre</th>
-                  <th scope="col"></th>
-                </tr>
-              </thead>
-              <tbody>
-              {% for publication in publications %}
-                <tr>
-                {# {% if( publication.imageName is empty ) %}
-                  <td> x </td>
-                {% else %}
-                  <td><img src="{{ vich_uploader_asset(publication, 'imageFile') }}" alt="image publication" class="img-thumbnail" width="10%"></img></td>
-                {% endif %} #}
-                  <td>{{ publication.section }}</td>
-                  <td>{{ publication.title }}</td>
-                  <td><a href="{{ path('publication.update', {id: publication.id } )}}" type="button" class="btn btn-outline-primary">Modifier</a></td>
-                </tr>
-              {% endfor %}
-              </tbody>
-            </table>
+
+    {# --- SECTION 2 : GESTION DES PRESTATIONS --- #}
+    <section class="mb-5">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Gestion des Prestations</h5>
+                <p class="card-subtitle mb-2 text-muted">Mettre à jour les textes affichés sur la page des prestations.</p>
+                <a href="{{ path('publication.add')}}" class="btn btn-primary mb-3">Ajouter une prestation</a>
+                
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover mt-3 mb-0">
+                        <thead>
+                            <tr>
+                                <th scope="col">Titre</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for publication in publications %}
+                            <tr>
+                                <td>{{ publication.title }}</td>
+                                <td><a href="{{ path('publication.update', {id: publication.id } )}}" class="btn btn-outline-primary btn-sm">Modifier</a></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-      </div>
     </section>
-    {% endblock %}
-     <section class="p30 sections">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Gestion des menus et des plats</h5>
-          <p class="card-subtitle mb-2 text-muted">Cet espace te permet de gérer les exemples des menus que tu veux rendre visible sur ton site.</p>
-            <table class="table mt20 mb0">
-              <thead>
-                <tr>
-                  <th scope="col">Section</th>
-                  <th scope="col">Titre</th>
-                  <th scope="col"></th>
-                </tr>
-              </thead>
-              <tbody>
-              {% for publication in publications %}
-                <tr>
-                  <td>{{ publication.section }}</td>
-                  <td>{{ publication.title }}</td>
-                  <td><a href="{{ path('publication.update', {id: publication.id } )}}" type="button" class="btn btn-outline-primary">Modifier</a></td>
-                </tr>
-              {% endfor %}
-              </tbody>
-            </table>
-          </div>
+
+    {# --- SECTION 3 : GESTION DES MENUS --- #}
+    <section class="mb-5">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Gestion des menus et des plats</h5>
+                <p class="card-subtitle mb-2 text-muted">Gérer les exemples des menus visibles sur le site.</p>
+                <a href="{{ path('menu.add')}}" class="btn btn-primary mb-3">Ajouter un menu</a>
+                
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover mt-3 mb-0">
+                        <thead>
+                            <tr>
+                                <th scope="col">Libelle du menu</th>
+                                <th scope="col">Plats associés</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for oneMenu in tabMenu %}
+                            <tr>
+                                <td>{{ oneMenu.title }}</td>
+                                <td>
+                                    <ul class="list-unstyled mb-0 small">
+                                    {% for plat in oneMenu.plats %}
+                                        <li><i class="fas fa-check-circle me-1 text-success"></i>{{ plat.libelle }}</li>
+                                    {% endfor %}
+                                    </ul>
+                                </td>
+                                <td>
+                                    <a href="{{ path('menu.update', {id: oneMenu.id} )}}" class="btn btn-outline-primary btn-sm me-2">Modifier</a>
+                                    
+                                    {# Bouton de suppression sécurisé #}
+                                    <form method="POST" action="{{ path('menu.delete', {'id': oneMenu.id}) }}" style="display: inline-block;" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer le menu {{ oneMenu.title|default(oneMenu.id) }} ?')">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ oneMenu.id) }}">
+                                        <button type="submit" class="btn btn-outline-danger btn-sm">
+                                            Supprimer
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-      </section>
-    </main>
-  </body>
-</html>
+    </section>
 
-<script>
-const messageFlash = document.getElementById('message-flash');
-
-window.addEventListener('load', () => {
-  if (!messageFlash) return;
-
-  setTimeout(() => {
-    messageFlash.classList.add('hide');
-
-    messageFlash.addEventListener('transitionend', function handler() {
-      messageFlash.style.display = 'none';
-      messageFlash.removeEventListener('transitionend', handler);
-    });
-  }, 1500);
-});
-</script>
+{% endblock %}

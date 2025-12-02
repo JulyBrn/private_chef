@@ -1,0 +1,47 @@
+{# Fichier : templates/base.html.twig #}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Administration{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,...">
+        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqc6NDyE7VD0f0+nmd+d7ZJ48c5S99fM60uEChI3R7qCItg5p4jG04j/w6JqU7c0V5m5l01/Ew==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('styles/styles.css') }}">
+            <link rel="stylesheet" href="{{ asset('styles/admin.css') }}">
+        {% endblock %}
+    </head>
+    
+    <body>
+        
+        {% block body %}{% endblock %}
+
+        {% block javascripts %}
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+            
+            <script>
+                const messageFlash = document.getElementById('message-flash');
+                window.addEventListener('load', () => {
+                    if (!messageFlash) return;
+                    setTimeout(() => {
+                        messageFlash.classList.add('hide');
+                        messageFlash.addEventListener('transitionend', function handler() {
+                            messageFlash.style.display = 'none';
+                            messageFlash.removeEventListener('transitionend', handler);
+                        });
+                    }, 1500);
+                });
+            </script>
+        {% endblock %}
+    </body>
+</html>
