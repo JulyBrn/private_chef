@@ -4,7 +4,7 @@
 
 {% block body %}
 
-<div class="home flex flex-column align-center flex-center" style="background-image: url('/img/homepage.jpg');">
+<div class="home flex flex-column align-center flex-center">
   <div class="titleSection pl30">
     <span class="title text_shadow_light" style="margin-right: 10px;">CHEF PRIVÉ À DOMICILE</span>
     <div style="flex: 1; height: 2px; background-color: rgba(255, 255, 255, 0.3)"></div>
@@ -18,17 +18,19 @@
 </div>
 
 <div id="aboutme" class="home-container-inner flex height_full">
+  <div class="container_libelle">
     <h2 class="mt20 mb10 title_section"> À propos </h2>
-    <div class="entry-text pb20" style="width:70%">
-      <p>
-        Après plus de 20 ans passés dans l’univers exigeant de la restauration, j’ai choisi de mettre mon savoir-faire au service d’une cuisine plus personnelle. En tant que chef privé et traiteur, je vous propose une expérience sur mesure, où chaque plat est pensé pour sublimer vos produits et vos envies.
-      </p>
-      <div class="about-img mt30 flex flex-between align-start">
-      
-      <div><img src="/img/about1.jpg" alt="about image 1"/></div>
-      <div><img src="/img/about2.jpg" alt="about image 2" /></div>
-      </div>
+  </div>  
+  <div class="entry-text pb20" style="width:70%">
+    <p>
+      Après plus de 20 ans passés dans l’univers exigeant de la restauration, j’ai choisi de mettre mon savoir-faire au service d’une cuisine plus personnelle. En tant que chef privé et traiteur, je vous propose une expérience sur mesure, où chaque plat est pensé pour sublimer vos produits et vos envies.
+    </p>
+    <div class="about-img mt30 flex flex-between align-start">
+    
+    <div><img src="/img/about1.jpg" alt="about image 1"/></div>
+    <div><img src="/img/about2.jpg" alt="about image 2" /></div>
     </div>
+  </div>
 </div>
 
 <div id="prestations" class="height_full p50">
@@ -53,9 +55,11 @@
   </div>
 </div>
 
-<div id="prestations_card" class="home-container-inner flex">
-    <h2 class="mt20 mb10 title_section"> Mes préstations </h2>
-    <div class="entry-text pb20" style="width:70%">
+<div id="prestations_card_sections" class="home-container-inner flex">
+    <div class="container_libelle">
+      <h2 class="mt20 mb10 title_section"> Mes préstations </h2>
+    </div>
+    <div class="entry-text mb10" style="width:70%">
       <div id="prestations_card" class="menu-container" style="width:100%;">
       {% for key, one_article in tabArticle %}
       
@@ -93,29 +97,39 @@
     </div>
 </div>
 
+<section class="instagram-feed-section">
+    <h2 class="title-h2">#MonActualitéGastronomique</h2> 
+    <div id="instagram-widget-container">
+      <!-- LightWidget WIDGET --><script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script><iframe src="//lightwidget.com/widgets/f067af7e5ca8557f9b834d33449f447c.html" scrolling="no" allowtransparency="true" class="lightwidget-widget" style="width:100%;border:0;overflow:hidden;"></iframe>
+    </div>
+    <a href="[Lien vers votre Instagram]" target="_blank" class="instagram-cta">
+        Suivez-moi pour plus d'inspirations culinaires
+    </a>
+</section>
+
 <script>
    
-    function toggleCollapsible(event, contentId) {
-        event.preventDefault(); 
-        const content = document.getElementById(contentId);
-        const menuItem = event.currentTarget; 
+function toggleCollapsible(event, contentId) {
+    event.preventDefault(); 
+    const content = document.getElementById(contentId);
+    const menuItem = event.currentTarget; 
 
-        if (content.classList.contains('show')) {
-            content.classList.remove('show');
-            menuItem.classList.remove('active');
-        } else {
-            
-            document.querySelectorAll('.collapsible-content.show').forEach(openContent => {
-                openContent.classList.remove('show');
-            });
-            document.querySelectorAll('.menu-item.active').forEach(activeItem => {
-                activeItem.classList.remove('active');
-            });
+    if (content.classList.contains('show')) {
+        content.classList.remove('show');
+        menuItem.classList.remove('active');
+    } else {
+        
+        document.querySelectorAll('.collapsible-content.show').forEach(openContent => {
+            openContent.classList.remove('show');
+        });
+        document.querySelectorAll('.menu-item.active').forEach(activeItem => {
+            activeItem.classList.remove('active');
+        });
 
-            content.classList.add('show');
-            menuItem.classList.add('active');
-        }
+        content.classList.add('show');
+        menuItem.classList.add('active');
     }
+}
 </script>
 
 {% endblock %}

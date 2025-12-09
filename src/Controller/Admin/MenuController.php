@@ -4,13 +4,25 @@ namespace App\Controller\Admin;
 
 use App\Entity\Menu;
 use App\Form\MenuForm;
+use App\Repository\MenuRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 final class MenuController extends AbstractController
 {
+  #[Route('/admin/menu_gestion', name: "menu.gestion")]
+  public function index(MenuRepository $repository): Response
+  {
+    $tabMenu = $repository->findAll();
+    return $this->render('admin/menu_gestion.html.twig', [
+      'tabMenu'  => $tabMenu,
+      'userinfo' => $this->getUser()
+    ]);
+  }
+
   #[Route('admin/menu/add', name:'menu.add')]
   public function add(EntityManagerInterface $em, Request $request)
   {

@@ -17,9 +17,7 @@ final class PublicationController extends AbstractController
   #[Route('/admin/publication', name: "publication")]
   public function index(ArticleRepository $repository): Response
   {
-
     $publications = $repository->findAll();
-
     return $this->render('admin/publication.html.twig', [
       'publications' => $publications,
       'userinfo' => $this->getUser()

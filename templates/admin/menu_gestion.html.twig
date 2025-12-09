@@ -1,0 +1,54 @@
+{% extends 'admin/sidebar_admin.html.twig' %}  
+
+{% block title_admin %}Gestion des menus{% endblock %}
+
+{% block content_admin %}
+<section class="mb-5">
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <h5 class="card-title">Gestion des menus et des plats</h5>
+      <p class="card-subtitle mb-2 text-muted">Gérer les exemples des menus visibles sur le site.</p>
+      <a href="{{ path('menu.add')}}" class="btn btn-primary mb-3">Ajouter un menu</a>
+
+      <div class="table-responsive">
+        <table class="table table-striped table-hover mt-3 mb-0">
+          <thead>
+            <tr>
+              <th scope="col">Libelle du menu</th>
+              <th scope="col">Plats associés</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for oneMenu in tabMenu %}
+              <tr>
+                <td>{{ oneMenu.title }}</td>
+                <td>
+                  <ul class="list-unstyled mb-0 small">
+                    {% for plat in oneMenu.plats %}
+                      <li>
+                        <i class="fas fa-check-circle me-1 text-success"></i>
+                        {{ plat.libelle }}</li>
+                    {% endfor %}
+                  </ul>
+                </td>
+                <td>
+                  <a href="{{ path('menu.update', {id: oneMenu.id} )}}" class="btn btn-outline-primary btn-sm me-2">Modifier</a>
+
+                  {# Bouton de suppression sécurisé #}
+                  <form method="POST" action="{{ path('menu.delete', {'id': oneMenu.id}) }}" style="display: inline-block;" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer le menu {{ oneMenu.title|default(oneMenu.id) }} ?')">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ oneMenu.id) }}">
+                    <button type="submit" class="btn btn-outline-danger btn-sm">
+                      Supprimer
+                    </button>
+                  </form>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

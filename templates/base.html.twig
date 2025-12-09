@@ -9,7 +9,7 @@
 				<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 				<link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
 				<link href="https://fonts.googleapis.com/css2?family=Noticia+Text:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-				<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noticia+Text:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+				<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noticia+Text:ital,wght@0,400;0,700;1,400;1,700&display=swap"rel="stylesheet">
         {% block stylesheets %}
         {% endblock %}
 {% block javascripts %}
@@ -20,8 +20,8 @@
 </head>
 <body>
 <header>
-  <nav class="flex flex-between align-center mt10">
-    <a href="{{ path('home') }}"><h2 class="logo-nav ml25">Nicolas Chef .</h2></a> <!-- Déplacez le logo ici -->
+  <nav id="mainNav" class="flex flex-between align-center pt10">
+    <a href="{{ path('home') }}"><img src="/img/LogoNicolasChefPrive_Cloche_Blanc.svg" alt="Logo de Nicolas Chef" class="logo-nav ml25"/></a>
     <ul class="flex flex-end flex-gap-40 mr50">
       <li><a href="{{ path('home') }}">Accueil</a></li>
       <li><a href="{{ path('home') }}#aboutme">À propos</a></li>
@@ -56,9 +56,29 @@
 </html>
 
 <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const mainNav = document.getElementById('mainNav');
+    const scrollThreshold = 50; 
 
+    if (!mainNav) {
+        console.error("L'élément de navigation (mainNav) est introuvable.");
+        return;
+    }
 
+    function handleScrollColorChange() {
+        const scrollPosition = window.scrollY || window.pageYOffset;
 
+        if (scrollPosition > scrollThreshold) {
+            mainNav.classList.add('nav-dark');
+        } else {
+            mainNav.classList.remove('nav-dark');
+        }
+    }
+
+    window.addEventListener('scroll', handleScrollColorChange);
+    
+    handleScrollColorChange();
+});
 // Ouverture modale
 function openModal(element)
 {
@@ -135,5 +155,6 @@ function toggleCollapsible(event, contentId) {
         menuItem.classList.remove('active');
     }
 }
+
 
 </script>
