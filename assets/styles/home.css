@@ -14,18 +14,18 @@
   --menu-arrow-hover-color: #555555;
   --menu-item-title-color: #333333;
   --menu-item-tags-color: #7a7a7a;
-    --menu-collapsible-background: #f9f9f9;
-    --menu-collapsible-text-color: #555555;
-    --prestations-bg-color: #495057;
-    --prestations-text-color: #f8f9fa;
+  --menu-collapsible-background: #f9f9f9;
+  --menu-collapsible-text-color: #555555;
+  --prestations-bg-color: #495057;
+  --prestations-text-color: #f8f9fa;
   
-    --montserrat: 'Montserrat', Arial, sans-serif;
-    --roboto: 'Roboto', sans-serif;
-    --noticia-text: "Noticia Text", serif;
+  --montserrat: 'Montserrat', Arial, sans-serif;
+  --roboto: 'Roboto', sans-serif;
+  --noticia-text: "Noticia Text", serif;
   
-    --box-shadow-light: 0px 5px 15px rgba(0, 0, 0, 0.1);
-    --box-shadow-menu: 0 6px 20px rgba(0, 0, 0, 0.08);
-    --box-shadow-menu-item-image: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --box-shadow-light: 0px 5px 15px rgba(0, 0, 0, 0.1);
+  --box-shadow-menu: 0 6px 20px rgba(0, 0, 0, 0.08);
+  --box-shadow-menu-item-image: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
   
   html {
