@@ -14,9 +14,18 @@
         <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png">
         <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-touch-icon.png">
         <link rel="manifest" href="/img/favicon/site.webmanifest">
-        {% block stylesheets %}
-          {{ importmap('app') }}
+       {% block stylesheets %}
+        {# Charge les CSS hashés générés par AssetMapper #}
+        <link rel="stylesheet" href="{{ asset('assets/styles/app.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/styles/styles.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/styles/home.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/styles/contact.css') }}">
         {% endblock %}
+
+        {% block javascripts %}
+            {{ importmap('app') }}
+        {% endblock %}
+
 </head>
 <body>
 <header>
