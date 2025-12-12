@@ -15,7 +15,8 @@
         <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-touch-icon.png">
         <link rel="manifest" href="/img/favicon/site.webmanifest">
        {% block stylesheets %}
-        {# Charge les CSS hashés générés par AssetMapper #}
+
+        <link rel="stylesheet" href="{{ asset('assets/styles/home.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/styles/app.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/styles/styles.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/styles/home.css') }}">
@@ -31,10 +32,8 @@
 <header>
   <nav id="mainNav" class="flex flex-between align-center pt10">
     <a href="{{ path('home') }}">
-      <img src="/img/LogoNicolasChefPrive_Cloche_Blanc.svg" alt="Logo de Nicolas Chef51al9ozOeSx3RZ4GtjpH
-      " class="logo-nav ml25"/>
+      <img src="/img/LogoNicolasChefPrive_Cloche_Blanc.svg" alt="Logo de Nicolas" class="logo-nav ml25"/>
     </a>
-
     <button id="navToggle" class="hamburger-button mr25">
       <span class="line"></span>
       <span class="line"></span>
