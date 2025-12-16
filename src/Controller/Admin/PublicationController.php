@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 final class PublicationController extends AbstractController
-{
+{ 
   #[Route('/admin/publication', name: "publication")]
   public function index(ArticleRepository $repository): Response
   {

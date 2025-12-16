@@ -4,65 +4,66 @@
 
 {% block body %}
 
-<div class="home flex flex-column align-center flex-center">
-  <div class="titleSection pl30">
-    <span class="title text_shadow_light" style="margin-right: 10px;">CHEF PRIVÉ À DOMICILE</span>
-    <div style="flex: 1; height: 2px; background-color: rgba(255, 255, 255, 0.3)"></div>
-  </div>
-  <div class="accroche text_shadow_light">
-     Une Expérience<br>
-    De Chef<br>
-    Servie Chez<br>
-    Vous!
-  </div>
-</div>
-
-<div id="aboutme" class="home-container-inner flex height_full">
-  <div class="container_libelle">
-    <h2 class="mt20 mb10 title_section"> À propos </h2>
-  </div>  
-  <div class="entry-text pb20" style="width:70%">
-    <p>
-      Après plus de 20 ans passés dans l’univers exigeant de la restauration, j’ai choisi de mettre mon savoir-faire au service d’une cuisine plus personnelle. En tant que chef privé et traiteur, je vous propose une expérience sur mesure, où chaque plat est pensé pour sublimer vos produits et vos envies.
-    </p>
-    <div class="about-img mt30 flex flex-between align-start">
-    
-    <div><img src="/img/about1.jpg" alt="about image 1"/></div>
-    <div><img src="/img/about2.jpg" alt="about image 2" /></div>
+<section class="hero">
+  <div class="overlay"></div>
+  <div class="hero-content">
+    <h5>CHEF PRIVÉ À DOMICILE</h5>
+    <h1>Une expérience de chef,<br>servie chez vous.</h1>
+    <h3>Cuisine raffinée, produits locaux et service sur mesure.</h3>
+    <div class="locations">
+      La Rochelle • Rochefort • La Palmyre • Bordeaux
     </div>
   </div>
-</div>
+</section>
 
-<div id="prestations" class="height_full p50">
-  <div class="accroche_prestation text_shadow_dark">
-    Vos Événements
-    <br>
-    Sur&nbsp;Mesure
+<section id="aboutme" class="about">
+  <div class="about-container">
+    <div class="about-text">
+      <h2>À PROPOS</h2>
+      <p>
+        Après plus de 20 ans passés dans l’univers exigeant de la restauration, 
+        j’ai choisi de mettre mon savoir-faire au service d’une cuisine plus personnelle. 
+        En tant que chef privé et traiteur, je vous propose une expérience sur mesure, 
+        où chaque plat est pensé pour sublimer vos produits et vos envies.
+      </p>
+    </div>
+
+    <div class="about-images">
+      <img src="/img/about1.jpg" alt="Chef en cuisine">
+      <img src="/img/about2.jpg" alt="Dressage d’un plat">
+    </div>
   </div>
-  <div class="videosection" style="fullwidth">
-    <video autoplay muted loop playsinline class="fullwidth">
+</section>
+
+<section class="events">
+   <video autoplay muted loop playsinline class="background-video">
       <source src="/video/cooking.mp4" type="video/mp4">
     </video>
-  </div>
 
+  <div class="overlay"></div>
 
-  <div
-    class="titlesection">
-    {# <div style="flex: 1; height: 2px; background-color: rgba(255, 255, 255, 0.3)"></div> #}
-    <span class="title text_shadow_dark" style="line-height: 1.2;">De l’intimité d’un dîner privé à la grandeur d’une réception, chaque détail est pensé pour refléter vos envies.
-      <br>
-      Je crée des expériences culinaires uniques, taillées à votre image.</span>
-  </div>
-</div>
-
-<div id="prestations_card_sections" class="home-container-inner flex">
-    <div class="container_libelle">
-      <h2 class="mt20 mb10 title_section"> Mes préstations </h2>
+  <div class="events-content">
+    <div class="left-text">
+      <h2>Vos Événements<br>Sur Mesure</h2>
     </div>
-    <div class="entry-text mb10" style="width:70%">
-      <div id="prestations_card" class="menu-container" style="width:100%;">
+    <div class="right-text">
+      <p>
+        De l’intimité d’un dîner privé à la grandeur d’une réception,  
+        chaque détail est pensé pour refléter vos envies.  
+        Je crée des expériences culinaires uniques,  
+        taillées à votre image.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="prestations-section">
+  <div class="prestations-header">
+    <h2>MES PRESTATIONS</h2>
+  </div>
+
+  <div id="prestations_card_sections" class="menu-container" style="width:100%;">
       {% for key, one_article in tabArticle %}
-      
       <div class="menu-item-wrapper">
         <a href="#" class="menu-item" onclick="toggleCollapsible(event, 'content{{ one_article.id - 1 }}')">
           <div class="menu-item-image-wrapper">
@@ -93,9 +94,9 @@
         </div>
       </div>
       {% endfor %}
-    </div>
-    </div>
-</div>
+
+  </div>
+</section>
 
 {# <section class="instagram-feed-section">
     <h2 class="title-h2">#MonActualitéGastronomique</h2> 
@@ -108,8 +109,8 @@
 </section> #}
 
 <script>
-   
 function toggleCollapsible(event, contentId) {
+  console.log('je suis la');
     event.preventDefault(); 
     const content = document.getElementById(contentId);
     const menuItem = event.currentTarget; 

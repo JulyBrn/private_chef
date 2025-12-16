@@ -21,25 +21,26 @@ final class ContactController extends AbstractController
     $contacts = new Prospect();
     $form = $this->createForm( ContactForm::class, $contacts);
     $form->handleRequest($request);
+
     if($form->isSubmitted() && $form->isValid())
     {
-        // Envoi de l'email
-        $emailtosend = (new TemplatedEmail())
-            ->from($contacts->getEmail())
-            ->to('julybrn60@gmail.com')
-            ->subject('Demande de contact')
-            ->htmlTemplate('emails/contact.html.twig')
-            ->context([ 'data' => $contacts ]);
-        $mailer->send($emailtosend);
+      // Envoi de l'email
+      $emailtosend = (new TemplatedEmail())
+          ->from($contacts->getEmail())
+          ->to('julybrn60@gmail.com')
+          ->subject('Demande de contact')
+          ->htmlTemplate('emails/contact.html.twig')
+          ->context([ 'data' => $contacts ]);
+      $mailer->send($emailtosend);
 
-        $contacts->setDate(new DateTime('now'));
-        // Enregistrement dans la base de données
-        $entityManager->persist($contacts);
-        $entityManager->flush();
+      $contacts->setDate(new DateTime('now'));
+      // Enregistrement dans la base de données
+      $entityManager->persist($contacts);
+      $entityManager->flush();
 
-        $this->addFlash('success', 'Votre message a bien été envoyé !');
-        
-        return $this->redirect($this->generateUrl('contact')); 
+      $this->addFlash('success', 'Votre message a bien été envoyé !');
+      
+      return $this->redirect($this->generateUrl('contact'). '#flashmessage'); 
     }
 
     return $this->render('contact/contact.html.twig', [

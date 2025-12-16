@@ -9,17 +9,18 @@
 				<link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
 				<link href="https://fonts.googleapis.com/css2?family=Noticia+Text:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 				<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noticia+Text:ital,wght@0,400;0,700;1,400;1,700&display=swap"rel="stylesheet">
+         <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;500&display=swap" rel="stylesheet">
         <link rel="icon" type="image/x-icon" href="/img/favicon/favicon.ico">
         <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png">
         <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-touch-icon.png">
         <link rel="manifest" href="/img/favicon/site.webmanifest">
        {% block stylesheets %}
-
         <link rel="stylesheet" href="{{ asset('assets/styles/app.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/styles/styles.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/styles/contact.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/styles/home.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/styles/media-queries.css') }}">
         {% endblock %}
 
         {% block javascripts %}
@@ -78,18 +79,15 @@
 {% block body %}
 {% endblock %}
 </main>
-<footer class="site-footer">
-  <div class="footer-content">
-    <p>&copy; {{ "now"|date("Y") }} Nicolas Chef. Tous droits réservés.</p>
-    {# <div class="footer-links">
-      <a href="{{ path('home') }}">Accueil</a>
-      <a href="{{ path('home') }}#prestations">Prestations</a>
-      <a href="{{ path('contact') }}">Contactez-moi</a>
-    </div>
-    <div class="social-links">
-      <a href="#" aria-label="Instagram">Instagram</a>
-    </div> #}
-  </div>
+<footer class="footer-minimal">
+  <p>© {{ "now"|date("Y") }} — Chef Privé & Traiteur à Rochefort</p>
+  <p>
+    {# <a href="mailto:contact@tonsite.fr">contact@tonsite.fr</a> #}
+    {# <span class="dot">•</span> #}
+    <a href="https://www.instagram.com/nicolasprivatechef" target="_blank" rel="noopener noreferrer">
+      Instagram
+    </a>
+  </p>
 </footer>
 
 {# Include modale #}
@@ -101,28 +99,31 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const mainNav = document.getElementById('mainNav');
-    const scrollThreshold = 50; 
+  const mainNav = document.getElementById('mainNav');
+  const scrollThreshold = 50; 
 
-    if (!mainNav) {
-        console.error("L'élément de navigation (mainNav) est introuvable.");
-        return;
-    }
+  if (!mainNav) {
+      console.error("L'élément de navigation (mainNav) est introuvable.");
+      return;
+  }
 
-    function handleScrollColorChange() {
-        const scrollPosition = window.scrollY || window.pageYOffset;
+  function handleScrollColorChange() {
+      const scrollPosition = window.scrollY || window.pageYOffset;
 
-        if (scrollPosition > scrollThreshold) {
-            mainNav.classList.add('nav-dark');
-        } else {
-            mainNav.classList.remove('nav-dark');
-        }
-    }
+      if (scrollPosition > scrollThreshold) {
+          mainNav.classList.add('nav-dark');
+      } else {
+          mainNav.classList.remove('nav-dark');
+      }
+  }
 
-    window.addEventListener('scroll', handleScrollColorChange);
-    
-    handleScrollColorChange();
+  window.addEventListener('scroll', handleScrollColorChange);
+  
+  handleScrollColorChange();
 });
+
+
+
 // Ouverture modale
 function openModal(element)
 {

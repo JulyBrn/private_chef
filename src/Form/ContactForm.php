@@ -18,7 +18,7 @@ class ContactForm extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'required' => true
+            'required' => true
             ])
             ->add('phone', TelType::class, [
             'required' => true 

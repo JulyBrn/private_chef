@@ -9,3 +9,4 @@ import './styles/app.css';
 import './styles/styles.css';
 import './styles/home.css';
 import './styles/contact.css';
+import './styles/media-queries.css';
