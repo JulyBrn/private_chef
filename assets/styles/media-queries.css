@@ -352,42 +352,6 @@
   body {
     padding: 10px;
   }
-  .menu-item {
-    flex-direction: row;
-    align-items: center;
-    padding: 12px 15px;
-  }
-
-  .menu-item-image-wrapper {
-    width: 70px;
-    height: 70px;
-    margin-right: 12px;
-    border-radius: 6px;
-  }
-
-  .menu-item-tags {
-    font-size: 10px;
-    margin-bottom: 4px;
-  }
-
-  .menu-item-title {
-    font-size: 14.5px;
-  }
-
-  .menu-item-arrow {
-    font-size: 18px;
-    margin-left: 10px;
-  }
-
-  .collapsible-content {
-    padding: 0 15px;
-  }
-
-  .collapsible-content.show {
-    padding: 10px 15px;
-  }
-
-
   .accroche_prestation {
     font-size: 3rem;
   }
