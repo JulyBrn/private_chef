@@ -4,7 +4,7 @@
 
 {% block body %}
 
-<section class="hero">
+<section class="hero" style="background: url('{{ asset('images/homepage.jpg') }}') center/cover no-repeat;">
   <div class="overlay"></div>
   <div class="hero-content">
     <h5>CHEF PRIVÉ À DOMICILE</h5>
@@ -29,8 +29,8 @@
     </div>
 
     <div class="about-images">
-      <img src="/img/about1.jpg" alt="Chef en cuisine">
-      <img src="/img/about2.jpg" alt="Dressage d’un plat">
+      <img src="{{ asset('images/about1.jpg') }}" alt="Chef en cuisine">
+      <img src="{{ asset('images/about2.jpg') }}" alt="Dressage d’un plat">
     </div>
   </div>
 </section>
@@ -39,7 +39,7 @@
    <video autoplay muted loop playsinline class="background-video">
       <source src="/video/cooking.mp4" type="video/mp4">
     </video>
-
+    
   <div class="overlay"></div>
 
   <div class="events-content">

@@ -4,7 +4,7 @@
 
 {% block body %}
 
-<section class="contact-hero">
+<section class="contact-hero" style="background: url('{{ asset('images/contactpage.jpg') }}') center/cover no-repeat;">
   <div class="contact-hero-content">
     <h1>Conception de votre événement</h1>
     <p>Parlez-moi de votre projet culinaire — je vous réponds rapidement.</p>
@@ -15,7 +15,7 @@
   <div class="contact-flex">
     <!-- Bloc gauche : photo + texte -->
     <div class="contact-left">
-      <img src="/img/chef.jpg" alt="Photo du chef">
+      <img src="{{ asset('images/chef.jpg') }}" alt="Photo du chef">
       <div class="contact-left-content">
         <h2>Entrons en contact</h2>
         <p>
