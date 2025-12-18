@@ -346,6 +346,10 @@
   .submit-btn {
     width: 100%;
   }
+
+  #btncta_mobile {
+    display: inline-block;
+  }
 }
 
 @media (max-width: 480px) {

@@ -10,6 +10,7 @@
 				<link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
 				<link href="https://fonts.googleapis.com/css2?family=Noticia+Text:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 				<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noticia+Text:ital,wght@0,400;0,700;1,400;1,700&display=swap"rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
          <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;500&display=swap" rel="stylesheet">
         <link rel="icon" type="image/x-icon" href="/img/favicon/favicon.ico">
         <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
@@ -50,7 +51,7 @@
           <a href="{{ path('home') }}#aboutme">À propos</a>
         </li>
         <li>
-          <a href="{{ path('home') }}#prestations_card">Prestations</a>
+          <a href="{{ path('home') }}#prestations_card_sections">Prestations</a>
         </li>
         <li>
           <a href="{{ path('contact') }}">Contactez-moi</a>
@@ -67,7 +68,7 @@
         <a href="{{ path('home') }}#aboutme">À propos</a>
       </li>
       <li>
-        <a href="{{ path('home') }}#prestations_card">Prestations</a>
+        <a href="{{ path('home') }}#prestations_card_sections">Prestations</a>
       </li>
       <li>
         <a href="{{ path('contact') }}">Contactez-moi</a>
@@ -205,12 +206,14 @@ function toggleCollapsible(event, contentId) {
 document.addEventListener('DOMContentLoaded', () => {
     const navToggle = document.getElementById('navToggle');
     const fullScreenMenu = document.getElementById('fullScreenMenu');
+    const btncta_mobile = document.getElementById('btncta_mobile');
     
     function toggleMenu() {
 
         fullScreenMenu.classList.toggle('open'); 
         navToggle.classList.toggle('open'); 
         document.body.classList.toggle('menu-open');
+        btncta_mobile.classList.toggle('hide');
     }
     navToggle.addEventListener('click', toggleMenu);
 
