@@ -27,56 +27,105 @@
         </p>
         <div class="contact-details">
           <p>📍 Basé à Rochefort — Déplacements sur demande</p>
-          {# <p>📧 <a href="mailto:contact@tonsite.fr">nicolas@tonsite.fr</a></p> #}
           <p>📸 <a href="https://www.instagram.com/nicolasprivatechef" target="_blank">Instagram</a></p>
         </div>
       </div>
     </div>
-
     <!-- Bloc droit : formulaire -->
     <div class="contact-form-container">
       <h3>Envoyez-moi un message</h3>
-      {{ form_start(form, {'attr': {'class': 'contact-form'}}) }}
-        <div class="form-group">
-          <label for="name">Votre nom complet</label>
-          {{ form_widget(form.name) }}
+      {{ form_start(form, {
+        'action': path('contact') ~ '#contact-section',
+        'attr': {
+            'class': 'contact-form',
+            'id': 'contact-section',
+            'novalidate': 'novalidate',
+            'data-turbo': 'false'
+        } }) }}
+      <div class="form-group">
+        <label for="name">Votre nom complet</label>
+        {{ form_widget(form.name) }}
+        <div class="error-message">
+        {{ form_errors(form.name) }}
+        </div>  
+      </div>
+      
+      <div class="form-group">
+        <label for="email">Adresse e-mail</label>
+        {{ form_widget(form.email) }}
+        <div class="error-message">
+          {{ form_errors(form.email) }}
         </div>
-         <div class="error">
-            {{ form_errors(form.name) }}
-          </div>
+      </div>
+      
 
-        <div class="form-group">
-          <label for="email">Adresse e-mail</label>
-          {{ form_widget(form.email) }}
+      <div class="form-group">
+        <label for="phone">Téléphone</label>
+        {{ form_widget(form.phone) }}
+        <div class="error-message">
+          {{ form_errors(form.phone) }}
         </div>
-        <div class="error">
-            {{ form_errors(form.email) }}
-        </div>
+      </div>
+      
 
-        <div class="form-group">
-          <label for="phone">Téléphone</label>
-          {{ form_widget(form.phone) }}
+      <div class="form-group">
+        <label for="message">Comment puis-je vous aider ?</label>
+        {{ form_widget(form.message) }}
+        <div class="error-message">
+          {{ form_errors(form.message) }}
         </div>
-        <div class="error">
-            {{ form_errors(form.phone) }}
-        </div>
-
-        <div class="form-group">
-          <label for="message">Comment puis-je vous aider ?</label>
-          {{ form_widget(form.message) }}
-        </div>
-        <div class="error">
-            {{ form_errors(form.message) }}
-        </div>
-        {{ form_rest(form) }}
-        <button type="submit" class="btn-submit">Envoyer le message</button>
-        {% for message in successMessages %}
-          <div class="success-message" id="flashmessage">{{ message }}</div>
-        {% endfor %}
-      {{ form_end(form) }}
+      </div>
+      
+      {{ form_rest(form) }}
+      <button type="submit" class="btn-submit">Envoyer le message</button>
+    {{ form_end(form) }}
       
     </div>
   </div>
 </section>
+
+<div id="success-popup" class="popup">
+  <div class="popup-content">
+    <p>Merci de m'avoir contacté, je vous répondrai rapidement.</p>
+    <button id="close-popup">Fermer</button>
+  </div>
+</div>
+
+<script>
+
+const popup = document.getElementById('success-popup');
+const closeBtn = document.getElementById('close-popup');
+
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams.get('success') === '1') {
+  popup.style.display = 'flex';
+}
+
+closeBtn.addEventListener('click', function() {
+  popup.style.display = 'none';
+  const newUrl = window.location.origin + window.location.pathname + '#flashmessage';
+  window.history.replaceState({}, document.title, newUrl);
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  
+  const firstError = document.querySelector('.invalid-feedback');
+
+  if (firstError) {
+
+    const form = document.getElementById('contact-section');
+    
+    if (form) {
+      setTimeout(() => {
+          form.scrollIntoView({ 
+              behavior: 'smooth',
+              block: 'start'
+          });
+      }, 100);
+    }
+  }
+});
+
+</script>
 
 {% endblock %}

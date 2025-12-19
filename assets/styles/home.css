@@ -70,6 +70,7 @@ nav {
   padding: 10px 40px;
   border-radius: 27px;
   margin-left: auto;
+  background-color: unset;
 }
 
 .desktop-menu li {

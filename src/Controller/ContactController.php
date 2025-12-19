@@ -38,15 +38,15 @@ final class ContactController extends AbstractController
       $entityManager->persist($contacts);
       $entityManager->flush();
 
-      $this->addFlash('success', 'Votre message a bien été envoyé !');
+      $this->addFlash('success', 'Merci de m\'avoir contacté, je vous répondrai rapidement.');
       
-      return $this->redirect($this->generateUrl('contact'). '#flashmessage'); 
+      return $this->redirect($this->generateUrl('contact') . '?success=1#flashmessage');
     }
 
-    return $this->render('contact/contact.html.twig', [
+    return $this->render ('contact/contact.html.twig', [
       'controller_name' => 'ContactController',
       'form' => $form
     ]
-  );
+    );
   }
 }
